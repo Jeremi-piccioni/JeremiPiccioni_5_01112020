@@ -17,6 +17,7 @@ exports.getAllCameras = (req, res, next) => {
   );
 };
 
+
 exports.getOneCamera = (req, res, next) => {
   Camera.findById(req.params.id).then(
     (camera) => {
