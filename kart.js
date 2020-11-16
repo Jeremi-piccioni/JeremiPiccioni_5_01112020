@@ -49,22 +49,20 @@ const arryCriteria = ['name','color','price']
 
 const divToDisplayEachItem = () => {
 
-    for ( let i=0; i < numberOfItem; i++) {  
+    for ( let i=0; i <= numberOfItem; i++) {  
 
-        const itemDiv = document.createElement('div')
+        let itemDiv = document.createElement('div')
         itemDiv.setAttribute('id', 'item-number' + (i+1))
         document.querySelector('.All-items').appendChild(itemDiv)
 
         for ( let j=0; j < numberOfObjectInItem; j++) {  
 
-            
-            const itemDiv = document.createElement('p')
-            itemDiv.setAttribute('id', 'attribut-number' + (j+1))
-            document.querySelector('#item-number'+(i+1)).appendChild(itemDiv)
+            let elP = document.createElement('p')
+            elP.setAttribute('id', 'attribut-number' + (j+1))
+            document.querySelector('#item-number'+(i+1)).appendChild(elP)
             let criteria = arryCriteria[j]
             document.querySelector('#attribut-number' + (j+1)).innerHTML = cart[i][criteria]
            
-
             }
         }
     }
