@@ -144,7 +144,7 @@ const passingProductSpecificationsToLS = () => {
 
 const goToKartButton = () => {
     const btn = document.querySelector('#kart-btn')
-    btn.addEventListener('click', () => {location.href = "kart.html"})
+    btn.addEventListener('click', () => {location.href = "cart.html"})
 }
 
 goToKartButton()
