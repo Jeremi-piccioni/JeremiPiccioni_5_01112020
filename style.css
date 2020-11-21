@@ -51,7 +51,11 @@ ul{
 }
 
 
-#grand-total{
+/* #grand-total{
+    font-size: 5em;
+} */
+
+.totalPrice{
     font-size: 5em;
 }
 

@@ -152,13 +152,11 @@ goToKartButton()
 /*********************************************************Click incremetator***************************************/
 
 class kartItem {
-
-    constructor(name,color,price,quantity){
+    constructor(name,color,price,quantity)  {
         this.name = name
         this.color = color
         this.price = price
         this.quantity = quantity
-
     }
 }
 
@@ -180,6 +178,7 @@ class kartItem {
       let selectedItemPrice = document.querySelector('.product-price').textContent
 
       let cartSession = []
+      console.log('finalProductCartSession' + cartSession )
 
         if (localStorage.getItem('cartSession') != null) {
 

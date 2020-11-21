@@ -9,7 +9,7 @@ if(this.readyState == 4 && this.status == 200) {
     //console.log(bearDescriptionList)
     displayBearsNames(bearDescriptionList)
     
- }
+   }
 }
 
 oursNamesRequest.open("GET","http://localhost:3000/api/teddies", true)

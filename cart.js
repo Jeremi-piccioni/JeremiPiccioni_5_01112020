@@ -1,8 +1,6 @@
 /*****************************************************************************************************************/
-
 let displayData = () => {
 
-    
     let bearName = localStorage.getItem('selectedItemName')
     let h2ItemName = document.createElement('h2')
     h2ItemName.innerHTML = bearName
@@ -32,27 +30,37 @@ let displayData = () => {
 //   }
 // }
 
+/*************************************************Create Cancel Item Button***************************************/
+
+// const createCancelItemBtn = (itemDiv) => {
+
+//     let cancelButton = document.createElement('button')
+//     cancelButton.setAttribute('class','cancel_button')
+//     cancelButton.innerHTML = "clear form cart"
+
+//     document.querySelector('All-items').appendChild(cancelButton)
+
+//  }
+
+
 /***************************************Creating HTML Structur to display items*******************************/
+
+console.log(localStorage.getItem('cartSession'))
 
 let cart = JSON.parse(localStorage.getItem('cartSession'))
 console.log(cart)
-let numberOfItem = Object.keys(cart).length
 
+let numberOfItem  // = Object.keys(cart).length
+let numberOfObjectInItem    /* compte le nombre d'objets dans le tableau */
 
-// let numberOfItem = () => {            /* compte le nombre d'objets dans le tableau */
-//     if(cart ==null){return}
-//     else{Object.keys(cart).length}
-// }  
+      
+    if(cart == null || cart =="") {
+        document.querySelector('.totalPrice').innerHTML = "No Item in the cart yet ! "
+    }
+    else{ numberOfItem = Object.keys(cart).length
+        numberOfObjectInItem = Object.keys(cart[0]).length
+    }
 
-
-let numberOfObjectInItem = Object.keys(cart[0]).length 
-
-// let numberOfObjectInItem = () => {            /* compte le nombre d'element par item */
-//     if(cart ===null){return}
-//     else{Object.keys(cart[0]).length}
-// }  
-
-//console.log(Object.keys(cart[0]).length)
 
 
 const arrayCriteria = ['name','color','price']
@@ -64,7 +72,29 @@ const divToDisplayEachItem = () => {
 
         let itemDiv = document.createElement('div')
         itemDiv.setAttribute('id', 'item-number' + (i+1))
-        document.querySelector('.All-items').appendChild(itemDiv)
+        let allItemsDiv = document.querySelector('.All-items').appendChild(itemDiv)
+
+        let cancelButton = document.createElement('button')
+        cancelButton.setAttribute('id','cancel_button' + (i+1) )
+        cancelButton.innerHTML = "clear article nº" + (i+1) + " form cart"
+        document.querySelector('.All-items').appendChild(cancelButton)
+
+        cancelButton.addEventListener('click',() => {
+        console.log(i)
+
+        cart.splice(i,1)
+        console.log(cart)
+
+        localStorage.setItem('cartSession', JSON.stringify(cart) )
+        cart = localStorage.getItem('cartSession')
+
+        allItemsDiv.removeChild
+
+      //  divToDisplayEachItem()
+            
+          })
+
+       // createCancelItemBtn(itemDiv)
 
         for ( let j=0; j < numberOfObjectInItem; j++) {  
 
@@ -129,9 +159,14 @@ for (i=0; i<numberOfItem; i++) {
 
 getPrices()
 
-const additioner = (accumulator, currentValue ) => accumulator + currentValue
+const additioner = (accumulator, currentValue ) => 
+
+// if (currentValue =="") {return}
+// else{
+accumulator + currentValue
 let totalPriceItems = pricesArray.reduce(additioner)
 console.log(totalPriceItems)
+//}
 
 
 const displayTotal = () => {
@@ -142,7 +177,7 @@ const displayTotal = () => {
     
     let divTotalPrice = document.querySelector('.totalPrice')
     
-    if(totalPriceItems>0) {
+    if(totalPriceItems>=0 || totalPriceItems ==undefined ) {  // A voir si la 2em conditions fonctionne!! <-fonction non utiliser, elle est en L57
         divTotalPrice.appendChild(elPForTotal)
     }
 
@@ -157,8 +192,35 @@ displayTotal()
 //dispayTotal(totalPriceItems)
 
 
+   const btnSubmit = document.querySelector('#submit')
+   btnSubmit.addEventListener('click',(e)=> {
+       e.preventDefault()
+    } )
+
+/*************************************************Create Cancel Item Button***************************************/
+
+// const createCancelItemBtn = (itemDiv) => {
+
+//     let cancelButton = document.createElement('button')
+//     cancelButton.setAttribute('class','cancel_button')
+//     cancelButton.innerHTML = "clear form cart"
+
+//     document.querySelector('.All-items').appendChild(cancelButton)
+ 
+//    }
 
 
+// console.log(cart)
+// cart.splice(0,2)
+// console.log(cart)
+
+// let newCart = JSON.parse(splicedCart) 
+// console.log('newCart= ' + splicedCart)
+
+// let tab1 = ['pierre','paul','jack']
+// let tab2 = [4,5,6]
+// let tabOfTab = [tab1,tab2]
+// console.log('tabOfTab= ' + tabOfTab)
 
 
 
