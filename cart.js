@@ -29,7 +29,12 @@ let numberOfObjectInItem; /* compte le nombre d'objets dans le tableau */
 if (cart == null || cart == "") {
   document.querySelector(".totalPrice").innerHTML =
     "No Item in the cart yet ! ";
-} else {
+    let divForm = document.querySelector('.form')  // Passe le form en invisible
+    console.log(divForm)
+    divForm.setAttribute('class','invisible')
+} 
+
+else {
   numberOfItem = Object.keys(cart).length;
   numberOfObjectInItem = Object.keys(cart[0]).length;
 }
@@ -59,7 +64,7 @@ const divToDisplayEachItem = () => {
 
       allItemsDiv.removeChild;
       location.reload();
-      
+
     });
 
     for (let j = 0; j < numberOfObjectInItem; j++) {
@@ -93,13 +98,13 @@ const getPrices = () => {
 
 getPrices();
 
-const additioner = (accumulator, currentValue) =>
+const additioner = (accumulator, currentValue) => 
   // if (currentValue =="") {return}
   // else{
-  accumulator + currentValue;
+accumulator + currentValue;
 let totalPriceItems = pricesArray.reduce(additioner);
 console.log(totalPriceItems);
-//}
+
 
 const displayTotal = () => {
   const elPForTotal = document.createElement("p");
@@ -108,18 +113,96 @@ const displayTotal = () => {
 
   let divTotalPrice = document.querySelector(".totalPrice");
 
-  if (totalPriceItems >= 0 || totalPriceItems == undefined) {
-    // A voir si la 2em conditions fonctionne!! <-fonction non utiliser, elle est en L57
+  if (totalPriceItems >= 0 ) {
     divTotalPrice.appendChild(elPForTotal);
-  } else {
+  } 
+  
+  else {
+
     elPForTotal.innerHTML = "No item in the cart !! GO AND BUY ONE !!";
     divTotalPrice.appendChild(elPForTotal);
+
   }
 };
 
 displayTotal();
 
-const btnSubmit = document.querySelector("#submit");
-btnSubmit.addEventListener("click", (e) => {
-  e.preventDefault();
+// const btnSubmit = document.querySelector("#submit");
+// btnSubmit.addEventListener("click", (e) => {
+//   e.preventDefault();
+// });
+
+/*************************************************Validate order & Go to Orders Summary************************************************/
+
+const nameInput = document.querySelector("#name");
+const forenameInput = document.querySelector("#forename"); 
+const emailInput = document.querySelector("#email"); 
+const phoneInput = document.querySelector("#phone"); 
+const addressInput = document.querySelector("#address"); 
+const zipcodeInput = document.querySelector("#zipcode");
+const submitBtn =  document.querySelector("#submit");
+const divError = document.querySelector("#error");
+
+submitBtn.addEventListener("click", (e) => {
+  
+    divError.innerText = ""
+    messages = [];
+
+  // console.log( typeof(parseInt(nameInput.value) ))  
+  // console.log(parseInt(nameInput.value)+1)
+  // console.log(nameInput.value)  
+  // parseInt ????? 
+  // Number() ?????
+
+  // console.log(zipcodeInput.value.toString().length)  
+  // console.log(zipcodeInput.value)
+
+  if (nameInput.value ==="" || nameInput.value <=0 || nameInput.value >=0 || nameInput.value == null) {
+        console.log('pass in nameInput ')
+        messages.push("A valide name is required");
+  }
+
+  if (forenameInput.value ==="" ||  nameInput.value <=0 || nameInput.value >=0  ||  forenameInput.value == null) {
+      console.log('pass in forenameInput')
+      messages.push("A valide forename is required");
+}
+
+  if (emailInput.value ==="" ||  emailInput.value == null || emailInput.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) ==null ) {
+      console.log('pass in emailInput')
+      messages.push("A valide email is required");   
+}
+
+if (phoneInput.value ==="" ||
+    isNaN(phoneInput.value) ||  
+    phoneInput.value == null  ||
+    phoneInput.value.toString().length != 10 ) {  // a verifier à voir si ca fait l'affaire...
+    console.log('pass in phoneInput')
+    messages.push("A valide phone number is required");
+}
+
+if (addressInput.value ==="" 
+    ||  nameInput.value <=0 || nameInput.value >=0 // pas assez fiable
+    ||  addressInput.value == null ) {
+    console.log('pass in addressInput')
+    messages.push("A valide address is required");
+}
+
+if (zipcodeInput.value ==="" 
+    || isNaN(zipcodeInput.value) 
+    || zipcodeInput.value == null 
+    || zipcodeInput.value.toString().length != 5  ) { // pas assez fiable
+    console.log('pass in zipcodeInput')
+    messages.push("A valide zipcode is required");
+}
+
+  if(messages.length > 0) {
+    e.preventDefault()
+    divError.innerText = messages.join(" / ")
+    return
+  }
+  location.href = "ordersSummary.html"
 });
+
+
+
+
