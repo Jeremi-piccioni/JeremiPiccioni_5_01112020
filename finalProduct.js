@@ -118,13 +118,27 @@ backHomePageButton()
 
 /*********************************************Add product to kart************************************************/
 
+let selectedIteamsIdArray= [] // <-- variable global
+//console.log(selectedIteamsIdArray)
+
+//console.log('selectedIteamsIdArray' + selectedIteamsIdArray )
+
+// if (localStorage.getItem('selectedIteamsIdArray') != null) {
+
+// selectedIteamsIdArray = JSON.parse(localStorage.getItem('selectedIteamsIdArray'))
+// console.log('recupId')
+// }
+
+//selectedIteamsIdArray.push()
+//localStorage.setItem('selectedIteamsIdArray',selectedIteamsId) 
+
+
 const passingProductSpecificationsToLS = () => {
 
     let kartButton = document.getElementById('kart-button')
     
     kartButton.addEventListener('click', function(){
     
-
         let selectedItemName = document.querySelector('.productName').textContent
         localStorage.setItem('selectedItemName',selectedItemName)
 
@@ -134,7 +148,14 @@ const passingProductSpecificationsToLS = () => {
         let selectedItemPrice = document.querySelector('.product-price').textContent
         localStorage.setItem('itemPrice',selectedItemPrice)
 
-        //console.log(colorPicked)
+        let selectedItem = JSON.parse(localStorage.getItem('bearclicked'))
+        let selectedItemId = selectedItem['_id']
+        //console.log(selectedItemId)
+
+        selectedIteamsIdArray.push(selectedItemId)
+        //console.log(selectedIteamsIdArray)
+        localStorage.setItem('selectedIteamsIdArray',selectedIteamsIdArray)
+
        }
       )
      } 

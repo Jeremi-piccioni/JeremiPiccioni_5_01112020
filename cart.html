@@ -21,26 +21,27 @@
 
     <div class="form">
       <form action="ordersSummary.html" method="GET" class="visible">
-        <label for="name">Name (4 to 100 characters):</label>
+
+        <label for="name">Name</label>
         <input
           type="text"
           placeholder="joe"
           id="name"
           name="name"
-          required
           minlength="1"
           maxlength="50"
           size="100"
+          required
         />
 
-        <label for="name">Forename (4 to 100 characters):</label>
+        <label for="name">Forename</label>
         <input
           type="text"
           placeholder="Doe"
           id="forename"
           name="name"
           minlength="1"
-          maxlength="100"
+          maxlength="50"
           size="100"
           required
         />
@@ -67,8 +68,19 @@
         <label for="address">Address</label>
         <input
           type="text"
-          placeholder="Joe Billy Avenue, Los Angeles"
+          placeholder=" 52 Joe Billy Avenue"
           id="address"
+          minlength="1"
+          maxlength="200"
+          size="200"
+          required
+        />
+
+        <label for="town">Town</label>
+        <input
+          type="text"
+          placeholder="Los Angeles"
+          id="town"
           minlength="1"
           maxlength="200"
           size="200"

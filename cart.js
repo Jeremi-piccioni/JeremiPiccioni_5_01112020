@@ -139,6 +139,7 @@ const forenameInput = document.querySelector("#forename");
 const emailInput = document.querySelector("#email"); 
 const phoneInput = document.querySelector("#phone"); 
 const addressInput = document.querySelector("#address"); 
+const townInput = document.querySelector("#town"); 
 const zipcodeInput = document.querySelector("#zipcode");
 const submitBtn =  document.querySelector("#submit");
 const divError = document.querySelector("#error");
@@ -148,50 +149,54 @@ submitBtn.addEventListener("click", (e) => {
     divError.innerText = ""
     messages = [];
 
-  // console.log( typeof(parseInt(nameInput.value) ))  
-  // console.log(parseInt(nameInput.value)+1)
-  // console.log(nameInput.value)  
-  // parseInt ????? 
-  // Number() ?????
+   //console.log( typeof(parseInt(phoneInput.value) ))  
+   //console.log( parseInt(phoneInput.value) )
+   //console.log(phoneInput.value)
+   //console.log(nameInput.value)  
+   // parseInt ????? 
+   // Number() ?????
 
-  // console.log(zipcodeInput.value.toString().length)  
-  // console.log(zipcodeInput.value)
+  //console.log(typeof(nameInput.value))  
+  //console.log(nameInput.value)
 
   if (nameInput.value ==="" || nameInput.value <=0 || nameInput.value >=0 || nameInput.value == null) {
-        console.log('pass in nameInput ')
-        messages.push("A valide name is required");
+      //console.log('pass in nameInput ')
+      messages.push("A valide name is required");
   }
 
   if (forenameInput.value ==="" ||  nameInput.value <=0 || nameInput.value >=0  ||  forenameInput.value == null) {
-      console.log('pass in forenameInput')
+      //console.log('pass in forenameInput')
       messages.push("A valide forename is required");
 }
 
   if (emailInput.value ==="" ||  emailInput.value == null || emailInput.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) ==null ) {
-      console.log('pass in emailInput')
+     // console.log('pass in emailInput')
       messages.push("A valide email is required");   
 }
 
-if (phoneInput.value ==="" ||
+if (phoneInput.value ===""  ||
     isNaN(phoneInput.value) ||  
-    phoneInput.value == null  ||
-    phoneInput.value.toString().length != 10 ) {  // a verifier à voir si ca fait l'affaire...
-    console.log('pass in phoneInput')
+    phoneInput.value == null||
+    phoneInput.value.toString().length != 10 ) {        
+    //console.log('pass in phoneInput')
     messages.push("A valide phone number is required");
 }
 
-if (addressInput.value ==="" 
-    ||  nameInput.value <=0 || nameInput.value >=0 // pas assez fiable
-    ||  addressInput.value == null ) {
-    console.log('pass in addressInput')
+if (addressInput.value.match(/^\d+\s[A-z]+\s[A-z]+/) == null) {
+    //console.log('pass in addressInput')
     messages.push("A valide address is required");
+}
+
+if (townInput.value ==="" || townInput.value <=0 || townInput.value >=0 || townInput.value == null) {
+  //console.log('pass in nameInput ')
+  messages.push("A valide town is required");
 }
 
 if (zipcodeInput.value ==="" 
     || isNaN(zipcodeInput.value) 
     || zipcodeInput.value == null 
-    || zipcodeInput.value.toString().length != 5  ) { // pas assez fiable
-    console.log('pass in zipcodeInput')
+    || zipcodeInput.value.toString().length != 5  ) { 
+    //console.log('pass in zipcodeInput')
     messages.push("A valide zipcode is required");
 }
 
@@ -200,9 +205,79 @@ if (zipcodeInput.value ===""
     divError.innerText = messages.join(" / ")
     return
   }
-  location.href = "ordersSummary.html"
+
+  class customerData {
+    constructor(forename,name,address,town,email)  {
+        this.forename = forename
+        this.name = name
+        this.address = address
+        this.town = town
+        this.email = email
+    }
+  }
+  
+  
+  let customerDataObject = new customerData(forenameInput.value,
+                                            nameInput.value,
+                                            addressInput.value,
+                                            townInput.value,
+                                            emailInput.value)
+
+  console.log(customerDataObject)
+
+  let JSONformatedCustomerData = JSON.stringify(customerDataObject)
+
+  console.log(JSONformatedCustomerData)
+
+  //location.href = "ordersSummary.html"
+  //localStorage.clear() 
+
 });
 
 
+/**********************XMLHTTPREQUEST POST SEND CART ORDER TO DB DISPLAY RESPONSE TO CUSTOMER**********************/
+
+const sendOrderToDb = new XMLHttpRequest()
+
+sendOrderToDb.onreadystatechange = function () {
+if(this.readyState == 4 && this.status == 200) {
+
+    let CommandID = JSON.parse(this.responseText)
+    //console.log(CommandID)
+    //displayBearsNames(bearDescriptionList)
+    
+   }
+}
+
+sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
+sendOrderToDb.send()
+
+/**********************************************GET PRODUCTS ORDER IDs*********************************************/
 
 
+
+
+/**************************************************MAKING THE CUSTOMER DATA JSON**********************************/
+
+// const makingCustomerDataJSON = () => {
+
+// class customerData {
+//   constructor(forename,name,address,town,email)  {
+//       this.forename = forename
+//       this.name = name
+//       this.address = address
+//       this.town = town
+//       this.email = email
+//   }
+// }
+
+
+// let customerDataObject = new customerData(forenameInput.value,
+//                                           nameInput.value,
+//                                           addressInput.value,
+//                                           townInput.value,
+//                                           emailInput.value)
+
+// // // let JSONformatedCustomerData = JSON.parse(customerDataObject)
+
+// }
