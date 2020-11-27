@@ -117,8 +117,7 @@ const backHomePageButton = () => {
 backHomePageButton()
 
 /*********************************************Add product to kart************************************************/
-
-let selectedIteamsIdArray= [] // <-- variable global
+ // <-- variable global
 //console.log(selectedIteamsIdArray)
 
 //console.log('selectedIteamsIdArray' + selectedIteamsIdArray )
@@ -148,29 +147,43 @@ const passingProductSpecificationsToLS = () => {
         let selectedItemPrice = document.querySelector('.product-price').textContent
         localStorage.setItem('itemPrice',selectedItemPrice)
 
-        let selectedItem = JSON.parse(localStorage.getItem('bearclicked'))
-        let selectedItemId = selectedItem['_id']
         //console.log(selectedItemId)
 
-        selectedIteamsIdArray.push(selectedItemId)
+        //selectedIteamsIdArray.push(selectedItemId)
         //console.log(selectedIteamsIdArray)
-        localStorage.setItem('selectedIteamsIdArray',selectedIteamsIdArray)
 
-       }
+        }
       )
      } 
      passingProductSpecificationsToLS()
 
-    /*********************************************Go to kart button****************************************************/
+/**********************************************Adding ALL Ids to LocalStorage**************************************/
 
-const goToKartButton = () => {
+// if (localStorage.getItem('selectedIteamsIdArray') != null) {
+   
+//     console.log('there is Ids in local storage already: PASS IN IF!')
+//     console.log(localStorage.getItem('selectedIteamsIdArray'))
+//     console.log(selectedIteamsIdArray)
+//     selectedIteamsIdArray = JSON.parse(localStorage.getItem('selectedIteamsIdArray'))
+// }
+
+    
+ //console.log(selectedIteamsIdArray)
+ //selectedIteamsIdArray = localStorage.getItem('selectedIteamsIdArray')
+
+
+
+
+/*********************************************Go to Cart Page****************************************************/
+
+const goToCartPageButton = () => {
     const btn = document.querySelector('#kart-btn')
     btn.addEventListener('click', () => {location.href = "cart.html"})
 }
 
-goToKartButton()
+goToCartPageButton()
 
-/*********************************************************Click incremetator***************************************/
+/*********************************************************Item Constructor***************************************/
 
 class kartItem {
     constructor(name,color,price,quantity)  {
@@ -181,12 +194,9 @@ class kartItem {
     }
 }
 
+/***********************************************************Send cart Session & Id to Local Storage***************/
 
-
-
-// let numberOfClick = 0 //parseInt(localStorage.getItem('ClickNumber',numberOfClick))
-
- const addToKartClickCounter = () => {
+ const addToCartSessionToLS = () => {
   
     let kartBtn = document.getElementById('kart-button')
     
@@ -198,35 +208,30 @@ class kartItem {
       let colorPicked = document.getElementById('menuColor').value 
       let selectedItemPrice = document.querySelector('.product-price').textContent
 
+      let selectedItem = JSON.parse(localStorage.getItem('bearclicked'))
+      let selectedItemId = selectedItem['_id']
+      let selectedIteamsIdArray= []
+
       let cartSession = []
-      console.log('finalProductCartSession' + cartSession )
+      //console.log('finalProductCartSession' + cartSession )
 
         if (localStorage.getItem('cartSession') != null) {
 
+        console.log('Cart session is not null')
         cartSession = JSON.parse(localStorage.getItem('cartSession'))
-        console.log('recup')
+        selectedIteamsIdArray = JSON.parse(localStorage.getItem('selectedIteamsIdArray'))
+
         }
         
         cartSession.push(new kartItem(selectedItemName,colorPicked,selectedItemPrice))
         localStorage.setItem('cartSession',JSON.stringify(cartSession)) 
-
-
-
-    //     numberOfClick = numberOfClick + 1
-    //    // console.log('avant= '+ numberOfClick)
-    //     localStorage.setItem('ClickNumber',numberOfClick)
-    //     let clickCounter = localStorage.getItem('ClickNumber',numberOfClick)
-    //     //clickCounter++
-        
-    //     localStorage.setItem('ClickNumber',clickCounter)
-
-        //numberOfClick= localStorage.getItem('ClickNumber',numberOfClick)
-        //console.log('apres= '+ numberOfClick)
+        selectedIteamsIdArray.push(selectedItemId)
+        localStorage.setItem('selectedIteamsIdArray',JSON.stringify(selectedIteamsIdArray)) 
 
     })
  }
 
- addToKartClickCounter()
+ addToCartSessionToLS()
 
  /**********************************Passing number of click from Product Page to Home Page************************/
 
