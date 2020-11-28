@@ -18,10 +18,10 @@ let displayData = () => {
 
 /***************************************Creating HTML Structur to display items*******************************/
 
-console.log(localStorage.getItem("cartSession"));
+//console.log(localStorage.getItem("cartSession"));
 
 let cart = JSON.parse(localStorage.getItem("cartSession"));
-console.log(cart);
+//console.log(cart);
 
 let numberOfItem; // = Object.keys(cart).length
 let numberOfObjectInItem; /* compte le nombre d'objets dans le tableau */
@@ -30,7 +30,7 @@ if (cart == null || cart == "") {
   document.querySelector(".totalPrice").innerHTML =
     "No Item in the cart yet ! ";
     let divForm = document.querySelector('.form')  // Passe le form en invisible
-    console.log(divForm)
+    //console.log(divForm)
     divForm.setAttribute('class','invisible')
 } 
 
@@ -54,10 +54,10 @@ const divToDisplayEachItem = () => {
     document.querySelector(".All-items").appendChild(cancelButton);
 
     cancelButton.addEventListener("click", () => {
-      console.log(i);
+      //console.log(i);
 
       cart.splice(i, 1);
-      console.log(cart);
+      //console.log(cart);
 
       localStorage.setItem("cartSession", JSON.stringify(cart));
       cart = localStorage.getItem("cartSession");
@@ -103,7 +103,7 @@ const additioner = (accumulator, currentValue) =>
   // else{
 accumulator + currentValue;
 let totalPriceItems = pricesArray.reduce(additioner);
-console.log(totalPriceItems);
+//console.log(totalPriceItems);
 
 
 const displayTotal = () => {
@@ -148,16 +148,6 @@ submitBtn.addEventListener("click", (e) => {
   
     divError.innerText = ""
     messages = [];
-
-   //console.log( typeof(parseInt(phoneInput.value) ))  
-   //console.log( parseInt(phoneInput.value) )
-   //console.log(phoneInput.value)
-   //console.log(nameInput.value)  
-   // parseInt ????? 
-   // Number() ?????
-
-  //console.log(typeof(nameInput.value))  
-  //console.log(nameInput.value)
 
   if (nameInput.value ==="" || nameInput.value <=0 || nameInput.value >=0 || nameInput.value == null) {
       //console.log('pass in nameInput ')
@@ -207,33 +197,37 @@ if (zipcodeInput.value ===""
   }
 
   class customerData {
-    constructor(forename,name,address,town,email)  {
-        this.forename = forename
-        this.name = name
+    constructor(firstName,lastName,address,city,email)  {
+        this.firstName = firstName
+        this.lastName = lastName
         this.address = address
-        this.town = town
+        this.city = city
         this.email = email
-    }
+     }
   }
-  
-  
+
   let customerDataObject = new customerData(forenameInput.value,
                                             nameInput.value,
                                             addressInput.value,
                                             townInput.value,
-                                            emailInput.value)
+                                            emailInput.value,
+                                           )
 
-  console.log(customerDataObject)
+  class finalOrder {
+    constructor(contact,products) {
+      this.contact = contact
+      this.products = products
+    }
+  }
 
-  let JSONformatedCustomerData = JSON.stringify(customerDataObject)
+  let productsArray = JSON.parse(localStorage.getItem('selectedIteamsIdArray'))
+  //console.log(productsArray)
 
-  console.log(JSONformatedCustomerData)
-
-  //location.href = "ordersSummary.html"
-  //localStorage.clear() 
+  let finalOrderForDB = new finalOrder (customerDataObject,productsArray )
+  console.log(finalOrderForDB)
+  let JSONfinalOrderForDB = JSON.stringify(finalOrderForDB)
 
 });
-
 
 /**********************XMLHTTPREQUEST POST SEND CART ORDER TO DB DISPLAY RESPONSE TO CUSTOMER**********************/
 
@@ -250,12 +244,31 @@ if(this.readyState == 4 && this.status == 200) {
 }
 
 sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
-sendOrderToDb.send()
 
-/**********************************************GET PRODUCTS ORDER IDs*********************************************/
+// let orderValidationPost = JSON.stringify(
+//     { 
+//       contact: {                                                       // <-- Hard coded request !!
+//                 firstName:"JEREMI",    
+//                 lastName:"PICCIONI",
+//                 address :"62 Rue Frédéric Mistral",
+//                 city:"Le Havre",
+//                 email :"jeremi.piccioni@gmail.com"
+//               },
 
+//       products:["5beaacd41c9d440000a57d97","5be9c8541c9d440000665243"]
+//   }
+// )
 
+//console.log(orderValidationPost)
+//console.log(JSON.parse(orderValidationPost))
+sendOrderToDb.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+//sendOrderToDb.send(JSONfinalOrderForDB)
 
+sendOrderToDb.onreadystatechange = function() {  //Call a function when the state changes.
+      if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201) {
+          alert(sendOrderToDb.responseText);
+      }
+  }
 
 /**************************************************MAKING THE CUSTOMER DATA JSON**********************************/
 
