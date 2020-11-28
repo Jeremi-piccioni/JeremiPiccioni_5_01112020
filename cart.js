@@ -115,6 +115,7 @@ const displayTotal = () => {
 
   if (totalPriceItems >= 0 ) {
     divTotalPrice.appendChild(elPForTotal);
+    localStorage.setItem('Total_price_Order',totalPriceItems)
   } 
   
   else {
@@ -242,7 +243,7 @@ if (zipcodeInput.value ===""
 
 sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
 
-console.log(JSONfinalOrderForDB)
+//console.log(JSONfinalOrderForDB)
 
 sendOrderToDb.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 sendOrderToDb.send(JSONfinalOrderForDB)
@@ -250,7 +251,10 @@ sendOrderToDb.send(JSONfinalOrderForDB)
 
 sendOrderToDb.onreadystatechange = function() {  //Call a function when the state changes.
       if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201) {
-          alert(sendOrderToDb.responseText);
+          
+          localStorage.setItem('Valide_Order',(sendOrderToDb.responseText))
+          location.href = "ordersSummary.html"
+          //alert(sendOrderToDb.responseText)
       }
   }
 
