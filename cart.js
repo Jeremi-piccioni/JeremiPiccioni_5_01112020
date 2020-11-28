@@ -144,6 +144,8 @@ const zipcodeInput = document.querySelector("#zipcode");
 const submitBtn =  document.querySelector("#submit");
 const divError = document.querySelector("#error");
 
+let JSONfinalOrderForDB
+
 submitBtn.addEventListener("click", (e) => {
   
     divError.innerText = ""
@@ -225,50 +227,75 @@ if (zipcodeInput.value ===""
 
   let finalOrderForDB = new finalOrder (customerDataObject,productsArray )
   console.log(finalOrderForDB)
-  let JSONfinalOrderForDB = JSON.stringify(finalOrderForDB)
+  JSONfinalOrderForDB = JSON.stringify(finalOrderForDB)
+  console.log(JSONfinalOrderForDB)
 
-});
+  const sendOrderToDb = new XMLHttpRequest()
 
-/**********************XMLHTTPREQUEST POST SEND CART ORDER TO DB DISPLAY RESPONSE TO CUSTOMER**********************/
-
-const sendOrderToDb = new XMLHttpRequest()
-
-sendOrderToDb.onreadystatechange = function () {
-if(this.readyState == 4 && this.status == 200) {
+  sendOrderToDb.onreadystatechange = function () {
+    if(this.readyState == 4 && this.status == 200) {
 
     let CommandID = JSON.parse(this.responseText)
-    //console.log(CommandID)
-    //displayBearsNames(bearDescriptionList)
     
    }
 }
 
 sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
 
-// let orderValidationPost = JSON.stringify(
-//     { 
-//       contact: {                                                       // <-- Hard coded request !!
-//                 firstName:"JEREMI",    
-//                 lastName:"PICCIONI",
-//                 address :"62 Rue Frédéric Mistral",
-//                 city:"Le Havre",
-//                 email :"jeremi.piccioni@gmail.com"
-//               },
+console.log(JSONfinalOrderForDB)
 
-//       products:["5beaacd41c9d440000a57d97","5be9c8541c9d440000665243"]
-//   }
-// )
-
-//console.log(orderValidationPost)
-//console.log(JSON.parse(orderValidationPost))
 sendOrderToDb.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-//sendOrderToDb.send(JSONfinalOrderForDB)
+sendOrderToDb.send(JSONfinalOrderForDB)
+//sendOrderToDb.send(orderValidationPost)
 
 sendOrderToDb.onreadystatechange = function() {  //Call a function when the state changes.
       if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201) {
           alert(sendOrderToDb.responseText);
       }
   }
+
+});
+
+/**********************XMLHTTPREQUEST POST SEND CART ORDER TO DB DISPLAY RESPONSE TO CUSTOMER**********************/
+
+// const sendOrderToDb = new XMLHttpRequest()
+
+// sendOrderToDb.onreadystatechange = function () {
+// if(this.readyState == 4 && this.status == 200) {
+
+//     let CommandID = JSON.parse(this.responseText)
+    
+//    }
+// }
+
+// sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
+
+// // let orderValidationPost = JSON.stringify(
+// //     { 
+// //       contact: {                                                       // <-- Hard coded request !!
+// //                 firstName:"JEREMI_XXXXXXXX",    
+// //                 lastName:"XXXXXX_PICCIONI",
+// //                 address :"62 Rue Frédéric Mistral",
+// //                 city:"Le Havre",
+// //                 email :"jeremi.piccioni@gmail.com"
+// //               },
+
+// //       products:["5beaacd41c9d440000a57d97","5be9c8541c9d440000665243"]
+// //   }
+// // )
+
+// console.log(orderValidationPost)
+// console.log(JSONfinalOrderForDB)
+// //console.log(JSON.parse(orderValidationPost))
+// sendOrderToDb.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+// sendOrderToDb.send(orderValidationPost)
+// //sendOrderToDb.send(orderValidationPost)
+
+// sendOrderToDb.onreadystatechange = function() {  //Call a function when the state changes.
+//       if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201) {
+//           alert(sendOrderToDb.responseText);
+//       }
+//   }
 
 /**************************************************MAKING THE CUSTOMER DATA JSON**********************************/
 
