@@ -18,6 +18,7 @@ body {
 .pic_orinoco {
   display: flex;
   justify-content: center;
+  background-color: rgb(243,233,241);
 }
 
 .contener_center_product_and_btns{
@@ -139,6 +140,9 @@ h1 {
   height: 100%;
   padding: 10px;
   font-size: 30px;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .product-pic {
@@ -192,6 +196,8 @@ h4 {
 .btn_back_to_product {
   height: 25px;
   margin: 16px 5px 0 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .btn_back_to_home {
@@ -204,7 +210,9 @@ h4 {
 
 .links-cart {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  /* align-items: flex-end; */
+  width:100%;
   background-color: rgb(243, 233, 241);
 }
 
@@ -337,6 +345,17 @@ h4 {
   font-size: 100px;
   border: 5px solid white;
   border-radius: 50px;
+}
+
+#cart_btn_back_to_home{
+  justify-content: space-around;
+  width: 50%;
+}
+
+#cart_btn_back_to_product{
+  justify-content: space-around;
+  width: 50%;
+
 }
 
 .All-items {
