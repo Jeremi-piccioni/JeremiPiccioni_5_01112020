@@ -1,3 +1,21 @@
+/******************************************************************************Back to home page*******************/
+const backHomePageButton = () => {
+  const btn = document.querySelector('.btn_back_to_home')
+  btn.addEventListener('click', () => {location.href = "index.html"})
+}
+
+backHomePageButton()
+
+/*****************************************************************************Back to product page****************/
+
+const backToProductPageButton = () => {
+  const btn = document.querySelector('.btn_back_to_product')
+  btn.addEventListener('click', () => {location.href = "product.html"})
+}
+
+backToProductPageButton()
+
+
 /*****************************************************************************************************************/
 let displayData = () => {
   let bearName = localStorage.getItem("selectedItemName");
@@ -29,8 +47,10 @@ let numberOfObjectInItem; /* compte le nombre d'objets dans le tableau */
 if (cart == null || cart == "") {
   document.querySelector(".totalPrice").innerHTML =
     "No Item in the cart yet ! ";
-    let divForm = document.querySelector('.form')  // Passe le form en invisible
+    let divForm = document.querySelector('.form-style-7')  // Passe le form en invisible
+    //let divItem_info = document.querySelector('.item_info')
     //console.log(divForm)
+    //divsItem_info.setAttribute('class','invisible')
     divForm.setAttribute('class','invisible')
 } 
 
@@ -50,6 +70,7 @@ const divToDisplayEachItem = () => {
 
     let cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancel_button" + (i + 1));
+    cancelButton.setAttribute("class","cancel_btn")
     cancelButton.innerHTML = "clear article nº" + (i + 1) + " form cart";
     document.querySelector(".All-items").appendChild(cancelButton);
 
@@ -140,7 +161,7 @@ const forenameInput = document.querySelector("#forename");
 const emailInput = document.querySelector("#email"); 
 const phoneInput = document.querySelector("#phone"); 
 const addressInput = document.querySelector("#address"); 
-const townInput = document.querySelector("#town"); 
+const cityInput = document.querySelector("#city"); 
 const zipcodeInput = document.querySelector("#zipcode");
 const submitBtn =  document.querySelector("#submit");
 const divError = document.querySelector("#error");
@@ -157,7 +178,7 @@ submitBtn.addEventListener("click", (e) => {
       messages.push("A valide name is required");
   }
 
-  if (forenameInput.value ==="" ||  nameInput.value <=0 || nameInput.value >=0  ||  forenameInput.value == null) {
+  if (forenameInput.value ==="" ||  forenameInput.value <=0 || forenameInput.value >=0  ||  forenameInput.value == null) {
       //console.log('pass in forenameInput')
       messages.push("A valide forename is required");
 }
@@ -180,9 +201,9 @@ if (addressInput.value.match(/^\d+\s[A-z]+\s[A-z]+/) == null) {
     messages.push("A valide address is required");
 }
 
-if (townInput.value ==="" || townInput.value <=0 || townInput.value >=0 || townInput.value == null) {
+if (cityInput.value ==="" || cityInput.value <=0 || cityInput.value >=0 || cityInput.value == null) {
   //console.log('pass in nameInput ')
-  messages.push("A valide town is required");
+  messages.push("A valide city is required");
 }
 
 if (zipcodeInput.value ==="" 
@@ -212,7 +233,7 @@ if (zipcodeInput.value ===""
   let customerDataObject = new customerData(forenameInput.value,
                                             nameInput.value,
                                             addressInput.value,
-                                            townInput.value,
+                                            cityInput.value,
                                             emailInput.value,
                                            )
 
@@ -259,6 +280,12 @@ sendOrderToDb.onreadystatechange = function() {  //Call a function when the stat
   }
 
 });
+
+//auto expand textarea
+function adjust_textarea(h) {
+  h.style.height = "20px";
+  h.style.height = (h.scrollHeight)+"px";
+}
 
 /**********************XMLHTTPREQUEST POST SEND CART ORDER TO DB DISPLAY RESPONSE TO CUSTOMER**********************/
 

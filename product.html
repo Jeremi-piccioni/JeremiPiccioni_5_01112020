@@ -3,29 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/d4b9153c89.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Products</title>
   </head>
   <body>
-    <div class="head">
-      <h1>Products Page</h1>
+    <div class="all_div">
+      <div class="products_page_head">
+        <h1>Product</h1>
+
+        <div class="btn_back_to_home">
+          <button>Back to home page <i class="fas fa-home"></i></button>
+        </div>
+      </div>
+      <section class="product">
+        <h2 class="productName" id="item"></h2>
+        <div class="pic_contener">
+          <img class="product-pic" alt="photo du produit" />
+        </div>
+        <div class="contener_product_description">
+          <p class="description">Product description:</p>
+          <h3 class="product-description"></h3>
+        </div>
+        <div class="product_color">
+          <p class="description">Product available colors:</p>
+          <h4 class="product-colors"></h4>
+        </div>
+        <div class="contener_item_price">
+          <p class="description">Product price:</p>
+          <h5 class="product-price"></h5>
+        </div>
+      </section>
 
       <section class="btn">
-        <button>Back to main page</button>
+        <button id="kart-button">Add to kart + <i class="fas fa-cart-arrow-down"></i></button>
+        <button id="kart-btn">Go to kart <i class="fas fa-arrow-right"></i> <i class="fas fa-shopping-cart"></i></button>
       </section>
     </div>
-    <section class="product">
-      <h2 class="productName"></h2>
-      <img class="product-pic" alt="photo du produit" />
-      <h3 class="product-description"></h3>
-      <h4 class="product-colors"></h4>
-      <h5 class="product-price"></h5>
-    </section>
-
-    <section class="btn">
-      <button id="kart-button">Add to kart !</button>
-      <button id="kart-btn">Go to kart</button>
-    </section>
 
     <!-- <section class="colors"> </section> -->
 

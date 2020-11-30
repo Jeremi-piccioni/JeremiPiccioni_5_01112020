@@ -52,16 +52,16 @@ const displayInfo = (bearClikedNameInfoName,bearClikedNameInfoImageUrl,
   //  bearPhoto.setAttribute('scr', bearClikedNameInfoImageUrl)
 
     const bearDescription = document.querySelector('.product-description')
-    bearDescription.innerHTML = "Product description : " + bearClikedNameInfoDescription
+    bearDescription.innerHTML = /*"Product description : " + */ bearClikedNameInfoDescription
 
     const bearColors = document.querySelector('.product-colors')
    // displayColorPicker(bearColors)
-    bearColors.innerHTML = "Color available : " 
+   //bearColors.innerHTML =  "Color available : " 
 
     //console.log(bearClikedNameInfoColors)
 
     const bearPrice = document.querySelector('.product-price')
-    bearPrice.innerHTML = "Price : " + bearClikedNameInfoPrice + " €"
+    bearPrice.innerHTML = /*"Price : " + */ bearClikedNameInfoPrice + " €"
 
     //displayColorPicker(bearClikedNameInfoColors)  
 }
@@ -110,7 +110,7 @@ gettingInfoFromLS()
 /*********************************************back home button****************************************************/
 
 const backHomePageButton = () => {
-    const btn = document.querySelector('.btn')
+    const btn = document.querySelector('.btn_back_to_home')
     btn.addEventListener('click', () => {location.href = "index.html"})
 }
 
