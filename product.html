@@ -1,52 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/d4b9153c89.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/d4b9153c89.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="style.css" />
-    <title>Products</title>
+    <title>Orinoco Products</title>
   </head>
   <body>
     <div class="all_div">
       <div class="pic_orinoco">
         <img src="assets/pics/logo_orinoco.png" alt="logo shop orinoco" />
       </div>
+    <div class="contener_center_product_and_btns">
       <div class="products_page_head">
-        
         <h1>Product</h1>
-
         <div class="btn_back_to_home">
           <button>Back to home page <i class="fas fa-home"></i></button>
         </div>
       </div>
-      <section class="product">
-        <h2 class="productName" id="item"></h2>
-        <div class="pic_contener">
-          <img class="product-pic" alt="photo du produit" />
-        </div>
-        <div class="contener_product_description">
-          <p class="description">Product description:</p>
-          <h3 class="product-description"></h3>
-        </div>
-        <div class="product_color">
-          <p class="description">Product available colors:</p>
-          <h4 class="product-colors"></h4>
-        </div>
-        <div class="contener_item_price">
-          <p class="description">Product price:</p>
-          <h5 class="product-price"></h5>
-        </div>
-      </section>
+      <div class="contener_section_produit">
+        <section class="product">
+          <h2 class="productName" id="item"></h2>
+          <div class="pic_contener">
+            <img class="product-pic" alt="photo du produit" />
+          </div>
+          <div class="contener_product_description">
+            <p class="description">Product description:</p>
+            <h3 class="product-description"></h3>
+          </div>
+          <div class="product_color">
+            <p class="description">Product available colors:</p>
+            <h4 class="product-colors"></h4>
+          </div>
+          <div class="contener_item_price">
+            <p class="description">Product price:</p>
+            <h5 class="product-price"></h5>
+          </div>
+        </section>
+      </div>
 
-      <section class="btn">
-        <button id="kart-button">Add to kart + <i class="fas fa-cart-arrow-down"></i></button>
-        <button id="kart-btn">Go to kart <i class="fas fa-arrow-right"></i> <i class="fas fa-shopping-cart"></i></button>
+      <section class="btn" id="section_product_down_page_btn">
+        <button id="kart-button">
+          Add to kart + <i class="fas fa-cart-arrow-down"></i>
+        </button>
+        <button id="kart-btn">
+          Go to kart <i class="fas fa-arrow-right"></i>
+          <i class="fas fa-shopping-cart"></i>
+        </button>
       </section>
     </div>
+  <!-- </div> -->
+  <!-- </div> -->
 
-    <!-- <section class="colors"> </section> -->
-
-    <script src="finalProduct.js"></script>
   </body>
+  <script src="product.js"></script>
 </html>

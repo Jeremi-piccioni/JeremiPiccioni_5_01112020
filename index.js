@@ -1,4 +1,4 @@
-/********************************Get Bear Object****************************************************************/
+/********************************Get Bear Object from server******************************************************/
 
 const oursNamesRequest = new XMLHttpRequest()
 
@@ -6,7 +6,7 @@ oursNamesRequest.onreadystatechange = function () {
 if(this.readyState == 4 && this.status == 200) {
 
     let bearDescriptionList = JSON.parse(this.responseText)
-    //console.log(bearDescriptionList)
+
     displayBearsNames(bearDescriptionList)
     
    }
@@ -27,8 +27,6 @@ for (let bearsObject of bearDescriptionList ) {
     bearLink.innerHTML = bearsObject['name']
     const linkDiv = document.querySelector('.link')
     linkDiv.appendChild(bearLink)
-
-    //console.log(bearsObject['name'])
 
     bearsDescriptionToLS(bearsObject,bearLink)
 

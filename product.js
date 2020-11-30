@@ -1,4 +1,4 @@
-/************************************************Passing Color to LS**********************************************/
+/************************************************Passing Colors to LS**********************************************/
 const passingColorToLS = () => {
 
 let colorChosen = document.getElementById('menuColor')

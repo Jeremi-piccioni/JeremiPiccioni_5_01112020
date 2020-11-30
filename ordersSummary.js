@@ -1,6 +1,5 @@
 let localstorageOrder = localStorage.getItem('Valide_Order')
 
-//console.log(JSON.parse(localstorageOrder)) 
 let serverResponse = JSON.parse(localstorageOrder)
 
 let orderId = serverResponse['orderId']
@@ -12,7 +11,10 @@ DivTotalPrice.innerText = "Total price: " + localStorage.getItem('Total_price_Or
 let DivOrder_id = document.querySelector('#order_id')
 DivOrder_id.innerText = "Order ID: " + orderId
 
-let btnHomePage = document.querySelector('.btn_back_to_home')
+
+
+let btnHomePage = document.querySelector('.btn_back_to_home') // Send to home page on click
+
 btnHomePage.addEventListener('click', () => {
 
     localStorage.clear()

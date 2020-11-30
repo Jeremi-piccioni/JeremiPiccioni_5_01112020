@@ -15,8 +15,7 @@ const backToProductPageButton = () => {
 
 backToProductPageButton()
 
-
-/*****************************************************************************************************************/
+/*************************************************************************************************/
 let displayData = () => {
   let bearName = localStorage.getItem("selectedItemName");
   let h2ItemName = document.createElement("h2");
