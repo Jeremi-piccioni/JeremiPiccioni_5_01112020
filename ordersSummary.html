@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Order Summary</title>
-</head>
-<body>
-    <h1 id="test">ORDER SUMMARY</h1>
-    <a id="back_to_main_page" href="index.html">Back to main page</a>
+  </head>
+  <body>
 
-    <h2>Thank your for your order !</h2>
+    <div class="summary_titre">
+      <h1 id="order_title">ORDER SUMMARY</h1>
+    </div>
 
+    <h2 id="thanks_message">Thank your for your order !</h2>
+<section id="page_pink_bckgnd">
     <div id="total_price"></div>
     <div id="order_id"></div>
-    
-    <div id="order"></div>
 
-    <script src="ordersSummary.js"></script>
-</body>
+    <div class="btn_back_to_home" id="summary_order_home_btn_page">
+      <button>Back to home page <i class="fas fa-home"></i></button>
+    </div>
+</section>
+    <!-- <div id="order"></div> -->
+  </body>
+  <script src="ordersSummary.js"></script>
 </html>

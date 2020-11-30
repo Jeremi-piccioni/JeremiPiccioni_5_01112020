@@ -12,8 +12,13 @@ DivTotalPrice.innerText = "Total price: " + localStorage.getItem('Total_price_Or
 let DivOrder_id = document.querySelector('#order_id')
 DivOrder_id.innerText = "Order ID: " + orderId
 
-let elA = document.querySelector('#back_to_main_page')
-elA.addEventListener('click', () => {localStorage.clear()})
+let btnHomePage = document.querySelector('.btn_back_to_home')
+btnHomePage.addEventListener('click', () => {
+
+    localStorage.clear()
+    location.href = "index.html"
+
+})
 
 
 
