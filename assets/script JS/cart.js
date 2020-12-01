@@ -92,7 +92,7 @@ const divToDisplayEachItem = () => {
 
       let elH2 = document.createElement("h2");   // Set name of item properties in a H2 element
       elH2.setAttribute("class", "attribut-number-title" + j);
-      elH2.innerHTML = arrayCriteria[j] + ": ";
+      elH2.innerHTML = arrayCriteria[j] + ": ";   // arrayCriteria[j].charAt(0).toUpperCase() + arrayCriteria[j].slice(1) + ": "
       itemDiv.appendChild(elH2);
       
       let elP = document.createElement("p");     // Set the selected item properties under the H2 element
@@ -104,6 +104,7 @@ const divToDisplayEachItem = () => {
     }
   }
 };
+
 
 divToDisplayEachItem();
 
@@ -123,35 +124,49 @@ const getPrices = () => {
     // console.log(pricesArray)
   }
 };
-
 getPrices();
 
-const additioner = (accumulator, currentValue) => 
-  // if (currentValue =="") {return}
-  // else{
-accumulator + currentValue;
-let totalPriceItems = pricesArray.reduce(additioner);
-//console.log(totalPriceItems);
+//let totalPriceItems
+
+// const additioner = (accumulator, currentValue) => {
+//   // if (currentValue =="") {return}
+//   // else{
+// accumulator + currentValue;
+// let totalPriceItems = pricesArray.reduce(additioner);
+
+// }
+
+
 
 
 const displayTotal = () => {
+
+  if (cart == null || cart == "") {return}
+
+  let totalPriceItems = pricesArray.reduce(function(accumulator,currentValue ) {return accumulator + currentValue})
+
   const elPForTotal = document.createElement("p");
   elPForTotal.setAttribute("id", "grand-total");
   elPForTotal.innerHTML = "Grand Total: " + totalPriceItems + " €";
+
+  console.log("pass in displayTotal fonction")
+  console.log(totalPriceItems)
+
 
   let divTotalPrice = document.querySelector(".totalPrice");
 
   if (totalPriceItems >= 0 ) {
     divTotalPrice.appendChild(elPForTotal);
     localStorage.setItem('Total_price_Order',totalPriceItems)
+    console.log("pass if in displayTotal") // Test
   } 
   
-  else {
+  // else {
 
-    elPForTotal.innerHTML = "No item in the cart !! GO AND BUY ONE !!";
-    divTotalPrice.appendChild(elPForTotal);
+  //   elPForTotal.innerHTML = "No item in the cart !! GO AND BUY ONE !!";
+  //   divTotalPrice.appendChild(elPForTotal);
 
-  }
+  // }
 };
 
 displayTotal();

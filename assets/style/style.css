@@ -1,22 +1,18 @@
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
 
-/* body {
-  height: 100%;
-  margin: 0px;
-} */
 
-/* html, body {
-  margin:0px;
-  height:100%;
-} */
 
-.header {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+.super_contener{
+  min-height: 100vh;
   background-color: #f3e9f1;
+}
+
+header {
+  /* display: flex;
+  justify-content: center; */
+  /* width: 100%; */
+  /* background-color: #f3e9f1; */
 }
 
 
@@ -24,6 +20,8 @@
   display: flex;
   justify-content: center;
   background-color: rgb(243,233,241);
+  max-height: 250px;
+  max-width: 500px;
 }
 
 .contener_center_product_and_btns{
@@ -72,11 +70,15 @@ ul {
   justify-content: center;
 }
 
-.form_contener {
+/* .form_contener {
   background-color: tomato;
   display: flex;
   justify-content: center;
   width: 100%;
+} */
+
+form{
+  padding: 20px 20px 20px 20px;
 }
 
 input {
@@ -195,7 +197,7 @@ h4 {
 .products_page_head {
   display: flex;
   justify-content:space-around;
-  min-width: 1200px;
+  min-width: 80%;
 }
 
 #cart_btn_back_home{
@@ -253,13 +255,11 @@ h4 {
 }
 
 footer{
-  display: flex;
-  height:35vh;
-  /* height: 450px; */
   width: 100%;
+  /* height: 20px; */
   margin:auto;
   background-color: rgb(243, 233, 241);
-}
+} 
 
 
 /***********************************************************************************Form******************************************************************************/
@@ -269,9 +269,9 @@ footer{
   margin: auto;
   background: rgb(255, 255, 255);
   border-radius: 20px;
-  padding: 20px;
   font-family: Georgia, "Times New Roman", Times, serif;
   box-shadow: -18px 6px 34px -5px rgba(0, 0, 0, 0.77);
+  /* padding-bottom: 20px; */
 }
 .form-style-7 h1 {
   display: block;
@@ -395,6 +395,7 @@ footer{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .cancel_btn {
