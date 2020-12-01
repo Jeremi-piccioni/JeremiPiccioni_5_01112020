@@ -16,22 +16,22 @@ const backToProductPageButton = () => {
 backToProductPageButton()
 
 /*************************************************************************************************/
-let displayData = () => {
-  let bearName = localStorage.getItem("selectedItemName");
-  let h2ItemName = document.createElement("h2");
-  h2ItemName.innerHTML = bearName;
-  document.querySelector("section").appendChild(h2ItemName);
+// let displayData = () => {
+//   let bearName = localStorage.getItem("selectedItemName");
+//   let h2ItemName = document.createElement("h2");
+//   h2ItemName.innerHTML = bearName;
+//   document.querySelector("section").appendChild(h2ItemName);
 
-  let bearColor = localStorage.getItem("selectedColor");
-  let h3ItemColor = document.createElement("h3");
-  h3ItemColor.innerHTML = bearColor;
-  document.querySelector("section").appendChild(h3ItemColor);
+//   let bearColor = localStorage.getItem("selectedColor");
+//   let h3ItemColor = document.createElement("h3");
+//   h3ItemColor.innerHTML = bearColor;
+//   document.querySelector("section").appendChild(h3ItemColor);
 
-  let bearPrice = localStorage.getItem("itemPrice");
-  let h4ItemPrice = document.createElement("h4");
-  h4ItemPrice.innerHTML = bearPrice;
-  document.querySelector("section").appendChild(h4ItemPrice);
-};
+//   let bearPrice = localStorage.getItem("itemPrice");
+//   let h4ItemPrice = document.createElement("h4");
+//   h4ItemPrice.innerHTML = bearPrice;
+//   document.querySelector("section").appendChild(h4ItemPrice);
+// };
 
 /***************************************Creating HTML Structur to display items*******************************/
 
@@ -46,7 +46,7 @@ let numberOfObjectInItem; /* compte le nombre d'objets dans le tableau */
 if (cart == null || cart == "") {
   document.querySelector(".totalPrice").innerHTML =
     "No Item in the cart yet ! ";
-    let divForm = document.querySelector('.form-style-7')  // Passe le form en invisible
+    let divForm = document.querySelector('.form-style-7')  // Passe le form en invisible si 0 item dans le cart.
     //let divItem_info = document.querySelector('.item_info')
     //console.log(divForm)
     //divsItem_info.setAttribute('class','invisible')
