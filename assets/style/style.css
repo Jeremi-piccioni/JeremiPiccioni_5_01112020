@@ -1,10 +1,15 @@
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
 
-body {
+/* body {
   height: 100%;
   margin: 0px;
-}
+} */
+
+/* html, body {
+  margin:0px;
+  height:100%;
+} */
 
 .header {
   display: flex;
@@ -189,7 +194,23 @@ h4 {
 
 .products_page_head {
   display: flex;
-  width:100%;
+  justify-content:space-around;
+  min-width: 1200px;
+}
+
+#cart_btn_back_home{
+  width: 25%;
+  min-width: 150px;;
+}
+/* 
+#button_to_home{
+  width: 150px;
+  flex-wrap: nowrap;
+} */
+
+
+#product_title{
+  width: 25%;
 }
 
 
@@ -221,7 +242,7 @@ h4 {
 }
 
 #section_product_down_page_btn{
-  width: 320px;
+  width:900px;
 }
 
 .btn {
@@ -230,11 +251,20 @@ h4 {
   padding: 5px;
 }
 
+footer{
+  display: flex;
+  height:35vh;
+  /* height: 450px; */
+  width: 100%;
+  margin:auto;
+  background-color: rgb(243, 233, 241);
+}
+
 /***********************************************************************************Form******************************************************************************/
 
 .form-style-7 {
   max-width: 400px;
-  margin: 50px auto;
+  margin: auto;
   background: rgb(255, 255, 255);
   border-radius: 20px;
   padding: 20px;
@@ -371,7 +401,7 @@ h4 {
 }
 
 #all_dynamic_divs {
-  background-color: #feb4fc8f;
+  background-color: rgb(243,233,241);
 }
 
 .totalPrice {
@@ -433,4 +463,49 @@ h4 {
   padding-left: 5px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
+}
+
+
+/**********************************************media query********************************************************/
+
+@media screen and (max-width: 920px) {
+
+  .products_page_head {
+    display: flex;
+    justify-content:space-between;
+    min-width: 600px;
+  }
+
+  #section_product_down_page_btn {
+    width: 600px;
+  }
+
+}
+
+@media screen and (max-width: 620px) {
+
+  .products_page_head {
+    display: flex;
+    justify-content:space-around;
+    min-width: 450px;
+  }
+
+  #section_product_down_page_btn{
+    width: 450px;
+  }
+
+}
+
+@media screen and (max-width: 470px) {
+
+  .products_page_head {
+    display: flex;
+    justify-content:space-around;
+    min-width: 320px;
+  }
+
+  #section_product_down_page_btn{
+    width: 300px;
+  }
+
 }
