@@ -59,7 +59,8 @@ else {
 }
 
 const arrayCriteria = ["name", "color", "price"];
-//console.log(criteria[0])
+//const arrayCriteria = ["Name", "Color", "Price"];
+//console.log(arrayCriteria[0])
 
 const divToDisplayEachItem = () => {
   for (let i = 0; i < numberOfItem; i++) {
@@ -88,11 +89,18 @@ const divToDisplayEachItem = () => {
     });
 
     for (let j = 0; j < numberOfObjectInItem; j++) {
-      let elP = document.createElement("p");
+
+      let elH2 = document.createElement("h2");   // Set name of item properties in a H2 element
+      elH2.setAttribute("class", "attribut-number-title" + j);
+      elH2.innerHTML = arrayCriteria[j] + ": ";
+      itemDiv.appendChild(elH2);
+      
+      let elP = document.createElement("p");     // Set the selected item properties under the H2 element
       elP.setAttribute("class", "attribut-number" + j);
       itemDiv.appendChild(elP);
       let criteria = arrayCriteria[j];
       elP.innerHTML = cart[i][criteria];
+
     }
   }
 };

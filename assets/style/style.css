@@ -261,6 +261,7 @@ footer{
   background-color: rgb(243, 233, 241);
 }
 
+
 /***********************************************************************************Form******************************************************************************/
 
 .form-style-7 {
@@ -409,6 +410,13 @@ footer{
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 30px;
   text-align: center;
+}
+
+.attribut-number-title0, .attribut-number-title1, .attribut-number-title2 {
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 40px;
+  text-decoration: underline;
 }
 
 /************************************************************ORDER SUMMARY PAGE*************************************************/

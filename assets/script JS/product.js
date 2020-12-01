@@ -46,7 +46,7 @@ const displayInfo = (bearClikedNameInfoName,bearClikedNameInfoImageUrl,
                      bearClikedNameInfoPrice) => {
 
     const titleBearName = document.querySelector('.productName')
-    titleBearName.innerHTML = "Item : " + bearClikedNameInfoName
+    titleBearName.innerHTML = /*"Item : " + */ bearClikedNameInfoName
 
     const bearPhoto = document.querySelector('.product-pic').src = bearClikedNameInfoImageUrl
   //  bearPhoto.setAttribute('scr', bearClikedNameInfoImageUrl)
