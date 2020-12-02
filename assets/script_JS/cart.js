@@ -37,21 +37,22 @@ else {
 const arrayCriteria = ["name", "color", "price"];
 
 const divToDisplayEachItem = () => {
-  for (let i = 0; i < numberOfItem; i++) {
-    let itemDiv = document.createElement("div");
-    itemDiv.setAttribute("id", "item-number" + (i + 1));
-    let allItemsDiv = document.querySelector(".All-items").appendChild(itemDiv);
 
-    let cancelButton = document.createElement("button");
+  for (let i = 0; i < numberOfItem; i++) {
+
+    let itemDiv = document.createElement("div");                                  // create 1 div per item added in cart
+    itemDiv.setAttribute("id", "item-number" + (i + 1));
+    let allItemsDiv = document.querySelector(".All-items").appendChild(itemDiv);  
+
+    let cancelButton = document.createElement("button");                         // create 1 cancel button for each item added in cart
     cancelButton.setAttribute("id", "cancel_button" + (i + 1));
     cancelButton.setAttribute("class","cancel_btn")
-    cancelButton.innerHTML = "clear article nº" + (i + 1) + " form cart";
-    document.querySelector(".All-items").appendChild(cancelButton);
+    cancelButton.innerHTML = "clear article nº" + (i + 1) + " from cart";
+    document.querySelector(".All-items").appendChild(cancelButton);     
 
-    cancelButton.addEventListener("click", () => {
+    cancelButton.addEventListener("click", () => {      
   
-    cart.splice(i, 1);
-      //console.log(cart);
+    cart.splice(i, 1);                                                         // On click for cancel button remove the item from cart array 
 
     localStorage.setItem("cartSession", JSON.stringify(cart));
     cart = localStorage.getItem("cartSession");
@@ -90,7 +91,7 @@ const getPrices = () => {
 
     let price = Number(textPrice.replace(/[^\d]/g, ""));               // remove € sign and convert string to number
 
-    pricesArray.push(price);                                           // push all prices of items in cart to variable pricesArray as an array 
+    pricesArray.push(price);                                           // pushs all prices of items in cart to variable pricesArray as an array 
   }
 };
 getPrices();
@@ -99,33 +100,24 @@ getPrices();
 
 const displayTotal = () => {
 
-  if (cart == null || cart == "") {return}
+  if (cart == null || cart == "") {return}  // if cart is emplty return
 
-  let totalPriceItems = pricesArray.reduce(function(accumulator,currentValue ) {return accumulator + currentValue})
+  let totalPriceItems = pricesArray.reduce(function(accumulator,currentValue ) {return accumulator + currentValue}) // Make additions of all prices of variable pricesArray 
 
   const elPForTotal = document.createElement("p");
   elPForTotal.setAttribute("id", "grand-total");
-  elPForTotal.innerHTML = "Grand Total: " + totalPriceItems + " €";
-
-  console.log("pass in displayTotal fonction")
-  console.log(totalPriceItems)
-
+  elPForTotal.innerHTML = "Grand Total: " + totalPriceItems + " €"; // Display grand total in <p> element 
 
   let divTotalPrice = document.querySelector(".totalPrice");
 
-  if (totalPriceItems >= 0 ) {
+ // if (totalPriceItems >= 0 ) {
     divTotalPrice.appendChild(elPForTotal);
     localStorage.setItem('Total_price_Order',totalPriceItems)
-  } 
+ // } 
   
 };
 
 displayTotal();
-
-// const btnSubmit = document.querySelector("#submit");
-// btnSubmit.addEventListener("click", (e) => {
-//   e.preventDefault();
-// });
 
 /*************************************************Validate order & Go to Orders Summary************************************************/
 
@@ -149,35 +141,22 @@ submitBtn.addEventListener("click", (e) => {
 
   if (nameInput.value ==="" || nameInput.value <=0 || nameInput.value >=0 || nameInput.value == null) {
       //console.log('pass in nameInput ')
-      messages.push("A valide name is required");
+      messages.push("A valide name is required"); // name field of the form must be not empty and be only letters
   }
 
   if (forenameInput.value ==="" ||  forenameInput.value <=0 || forenameInput.value >=0  ||  forenameInput.value == null) {
       //console.log('pass in forenameInput')
-      messages.push("A valide forename is required");
+      messages.push("A valide forename is required"); // forename field of the form must be not empty and be only letters
 }
 
-  if (emailInput.value ==="" ||  emailInput.value == null || emailInput.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) ==null ) {
-     // console.log('pass in emailInput')
-      messages.push("A valide email is required");   
-}
-
-if (phoneInput.value ===""  ||
-    isNaN(phoneInput.value) ||  
-    phoneInput.value == null||
-    phoneInput.value.toString().length != 10 ) {        
-    //console.log('pass in phoneInput')
-    messages.push("A valide phone number is required");
-}
-
-if (addressInput.value.match(/^\d+\s[A-z]+\s[A-z]+/) == null) {
-    //console.log('pass in addressInput')
-    messages.push("A valide address is required");
+if (addressInput.value.match(/^\d+\s[A-z]+\s[A-z]+/) == null) { // address field of the form must start with numbers then space then letters
+  //console.log('pass in addressInput')                         // then space and letters then any caraters (EX: 23 rue jean bernard)
+  messages.push("A valide address is required");
 }
 
 if (cityInput.value ==="" || cityInput.value <=0 || cityInput.value >=0 || cityInput.value == null) {
   //console.log('pass in nameInput ')
-  messages.push("A valide city is required");
+  messages.push("A valide city is required");  // city field of the form must be not empty and be only letters
 }
 
 if (zipcodeInput.value ==="" 
@@ -185,16 +164,29 @@ if (zipcodeInput.value ===""
     || zipcodeInput.value == null 
     || zipcodeInput.value.toString().length != 5  ) { 
     //console.log('pass in zipcodeInput')
-    messages.push("A valide zipcode is required");
+    messages.push("A valide zipcode is required");  // zipcode filed of the form must be 5 digits number and not empty
 }
 
-  if(messages.length > 0) {
+if (emailInput.value ==="" ||  emailInput.value == null || emailInput.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) ==null ) {
+     // console.log('pass in emailInput')
+      messages.push("A valide email is required");   // email field of the form must be a valide email and not empty
+}
+
+if (phoneInput.value ===""  ||
+    isNaN(phoneInput.value) ||  
+    phoneInput.value == null||
+    phoneInput.value.toString().length != 10 ) {        
+    //console.log('pass in phoneInput')
+    messages.push("A valide phone number is required"); // phone field of the form must be not empty  and 10 digits number
+}
+
+  if(messages.length > 0) { // if there is an error in the above validations -> prevent to send forms data and display error message(s)
     e.preventDefault()
     divError.innerText = messages.join(" / ")
     return
   }
 
-  class customerData {
+  class customerData {  //calss to build an object from form valide customer information
     constructor(firstName,lastName,address,city,email)  {
         this.firstName = firstName
         this.lastName = lastName
@@ -211,7 +203,7 @@ if (zipcodeInput.value ===""
                                             emailInput.value,
                                            )
 
-  class finalOrder {
+  class finalOrder {   // class to build object containing one object with customer data + an array of selected items in the cart
     constructor(contact,products) {
       this.contact = contact
       this.products = products
@@ -219,12 +211,10 @@ if (zipcodeInput.value ===""
   }
 
   let productsArray = JSON.parse(localStorage.getItem('selectedIteamsIdArray'))
-  //console.log(productsArray)
 
-  let finalOrderForDB = new finalOrder (customerDataObject,productsArray )
-  console.log(finalOrderForDB)
-  JSONfinalOrderForDB = JSON.stringify(finalOrderForDB)
-  console.log(JSONfinalOrderForDB)
+  let finalOrderForDB = new finalOrder (customerDataObject,productsArray ) // built object to use in Post XMLHTTPrequest
+  JSONfinalOrderForDB = JSON.stringify(finalOrderForDB)  // format the object in JSON
+ 
 
   const sendOrderToDb = new XMLHttpRequest()
 
@@ -238,91 +228,23 @@ if (zipcodeInput.value ===""
 
 sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
 
-//console.log(JSONfinalOrderForDB)
-
 sendOrderToDb.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 sendOrderToDb.send(JSONfinalOrderForDB)
-//sendOrderToDb.send(orderValidationPost)
 
 sendOrderToDb.onreadystatechange = function() {  //Call a function when the state changes.
       if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201) {
           
           localStorage.setItem('Valide_Order',(sendOrderToDb.responseText))
           location.href = "ordersSummary.html"
-          //alert(sendOrderToDb.responseText)
+    
       }
   }
 
 });
 
-//auto expand textarea
-function adjust_textarea(h) {
+
+function adjust_textarea(h) {   //auto expand textarea of form
   h.style.height = "20px";
   h.style.height = (h.scrollHeight)+"px";
 }
 
-/**********************XMLHTTPREQUEST POST SEND CART ORDER TO DB DISPLAY RESPONSE TO CUSTOMER**********************/
-
-// const sendOrderToDb = new XMLHttpRequest()
-
-// sendOrderToDb.onreadystatechange = function () {
-// if(this.readyState == 4 && this.status == 200) {
-
-//     let CommandID = JSON.parse(this.responseText)
-    
-//    }
-// }
-
-// sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
-
-// // let orderValidationPost = JSON.stringify(
-// //     { 
-// //       contact: {                                                       // <-- Hard coded request !!
-// //                 firstName:"JEREMI_XXXXXXXX",    
-// //                 lastName:"XXXXXX_PICCIONI",
-// //                 address :"62 Rue Frédéric Mistral",
-// //                 city:"Le Havre",
-// //                 email :"jeremi.piccioni@gmail.com"
-// //               },
-
-// //       products:["5beaacd41c9d440000a57d97","5be9c8541c9d440000665243"]
-// //   }
-// // )
-
-// console.log(orderValidationPost)
-// console.log(JSONfinalOrderForDB)
-// //console.log(JSON.parse(orderValidationPost))
-// sendOrderToDb.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-// sendOrderToDb.send(orderValidationPost)
-// //sendOrderToDb.send(orderValidationPost)
-
-// sendOrderToDb.onreadystatechange = function() {  //Call a function when the state changes.
-//       if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201) {
-//           alert(sendOrderToDb.responseText);
-//       }
-//   }
-
-/**************************************************MAKING THE CUSTOMER DATA JSON**********************************/
-
-// const makingCustomerDataJSON = () => {
-
-// class customerData {
-//   constructor(forename,name,address,town,email)  {
-//       this.forename = forename
-//       this.name = name
-//       this.address = address
-//       this.town = town
-//       this.email = email
-//   }
-// }
-
-
-// let customerDataObject = new customerData(forenameInput.value,
-//                                           nameInput.value,
-//                                           addressInput.value,
-//                                           townInput.value,
-//                                           emailInput.value)
-
-// // // let JSONformatedCustomerData = JSON.parse(customerDataObject)
-
-// }
