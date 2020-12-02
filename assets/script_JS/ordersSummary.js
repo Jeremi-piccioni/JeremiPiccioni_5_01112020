@@ -2,7 +2,7 @@ let localstorageOrder = localStorage.getItem('Valide_Order')
 
 let serverResponse = JSON.parse(localstorageOrder)
 
-let orderId = serverResponse['orderId']
+let orderId = serverResponse['orderId']  // Get order Id response from server
 
 
 let DivTotalPrice = document.querySelector('#total_price')
@@ -17,7 +17,7 @@ let btnHomePage = document.querySelector('.btn_back_to_home') // Send to home pa
 
 btnHomePage.addEventListener('click', () => {
 
-    localStorage.clear()
+    localStorage.clear()                // clear localStorage before new order and back to home page
     location.href = "index.html"
 
 })
