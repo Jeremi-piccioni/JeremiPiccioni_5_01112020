@@ -364,6 +364,7 @@ footer{
 }
 
 #error {
+  width: 300px;
   background-color: tomato;
   text-align: center;
 }
@@ -404,6 +405,10 @@ footer{
 }
 
 #all_dynamic_divs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(243,233,241);
 }
 

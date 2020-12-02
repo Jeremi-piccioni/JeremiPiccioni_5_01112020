@@ -13,80 +13,78 @@
 
   <body>
     <div class="super_contener">
-    <header>
-    <div class="pic_orinoco">
-      <img src="assets/pics/logo_orinoco.png" alt="logo shop orinoco" />
+      <header>
+        <div class="pic_orinoco">
+          <img src="assets/pics/logo_orinoco.png" alt="logo shop orinoco" />
+        </div>
+      </header>
+      <div class="links-cart">
+        <div class="btn_back_to_home" id="cart_btn_back_to_home">
+          <button>Home page <i class="fas fa-home"></i></button>
+        </div>
+        <div class="btn_back_to_product" id="cart_btn_back_to_product">
+          <button>Product page <i class="fas fa-gift"></i></button>
+        </div>
+      </div>
+
+      <h1>
+        <i class="fas fa-shopping-cart" id="cart">
+          Cart <i class="fas fa-shopping-cart"></i
+        ></i>
+      </h1>
+
+      <section id="all_dynamic_divs">
+        <div class="All-items"></div>
+
+        <div class="totalPrice"></div>
+        <div id="error"></div>
+        <form class="form-style-7">
+          <ul>
+            <li>
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" maxlength="100" />
+              <span>Enter your name here</span>
+            </li>
+            <li>
+              <label for="name">Forename</label>
+              <input type="text" name="forname" id="forename" maxlength="100" />
+              <span>Enter your forname here</span>
+            </li>
+            <li>
+              <label for="address">Address</label>
+              <input type="text" name="address" id="address" maxlength="100" />
+              <span>Enter your address here</span>
+            </li>
+            <li>
+              <label for="city">City</label>
+              <input type="text" name="city" id="city" maxlength="100" />
+              <span>Enter your city here</span>
+            </li>
+            <li>
+              <label for="zipcode">Zipcode</label>
+              <input type="text" name="address" id="zipcode" maxlength="100" />
+              <span>Enter your zipcode here</span>
+            </li>
+            <li>
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" maxlength="100" />
+              <span>Enter a valid email address</span>
+            </li>
+            <li>
+              <label for="phone">Phone</label>
+              <input type="email" name="phone" id="phone" maxlength="100" />
+              <span>Enter a valid phone number</span>
+            </li>
+            <!-- <div id="error"></div> -->
+            <li>
+              <input type="submit" id="submit" value="Validate your order" />
+            </li>
+          </ul>
+        </form>
+       
+      </section>
     </div>
-  </header>
-    <div class="links-cart">
-      <div class="btn_back_to_home" id="cart_btn_back_to_home">
-        <button>Home page <i class="fas fa-home"></i></button>
-      </div>
-      <div class="btn_back_to_product" id="cart_btn_back_to_product">
-        <button>Product page <i class="fas fa-gift"></i></button>
-      </div>
-    </div>
-
-    <h1>
-      <i class="fas fa-shopping-cart" id="cart">
-        Cart <i class="fas fa-shopping-cart"></i
-      ></i>
-    </h1>
-
-    <section id="all_dynamic_divs">
-      <div class="All-items">
-      
-      </div>
-
-      <div class="totalPrice"></div>
-
-      <form class="form-style-7">
-        <ul>
-          <li>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" maxlength="100" />
-            <span>Enter your name here</span>
-          </li>
-          <li>
-            <label for="forname">Forename</label>
-            <input type="text" name="forname" id="forename" maxlength="100" />
-            <span>Enter your forname here</span>
-          </li>
-          <li>
-            <label for="address">Address</label>
-            <input type="text" name="address" id="address" maxlength="100" />
-            <span>Enter your address here</span>
-          </li>
-          <li>
-            <label for="city">City</label>
-            <input type="text" name="city" id="city" maxlength="100" />
-            <span>Enter your city here</span>
-          </li>
-          <li>
-            <label for="zipcode">Zipcode</label>
-            <input type="text" name="address" id="zipcode" maxlength="100" />
-            <span>Enter your zipcode here</span>
-          </li>
-          <li>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" maxlength="100" />
-            <span>Enter a valid email address</span>
-          </li>
-          <li>
-            <label for="phone">Phone</label>
-            <input type="email" name="phone" id="phone" maxlength="100" />
-            <span>Enter a valid phone number</span>
-          </li>
-          <div id="error"></div>
-          <li>
-            <input type="submit" id="submit" value="Validate your order" />
-          </li>
-        </ul>
-      </form>
-    </section>
-  </div>
-  <footer></footer>
+    <footer></footer>
+    <script src="assets/script_JS/cart.js"></script>
   </body>
-  
-  <script src="assets/script JS/cart.js"></script>
 </html>
