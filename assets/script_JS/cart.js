@@ -148,7 +148,7 @@ submitBtn.addEventListener("click", (e) => {
     let messages = [];
 
   if (nameInput.value ==="" || nameInput.value <=0 || nameInput.value >=0 || nameInput.value == null) {
-      console.log('pass in nameInput ')
+      //console.log('pass in nameInput ')
       messages.push("A valide name is required");
   }
 

@@ -1,4 +1,4 @@
-/************************************************Passing Colors to LS**********************************************/
+/************************************************Passing Colors to LS**************************************************************************/
 const passingColorToLS = () => {
 
     let colorChosen = document.getElementById('menuColor')
@@ -7,13 +7,12 @@ const passingColorToLS = () => {
     
            let colorPicked = document.getElementById('menuColor').value 
            localStorage.setItem('color',colorPicked)
-           console.log(colorPicked)
     
        }
       )
      } 
        
-    /*****************************************Getting Info form local Storage****************************************/
+    /*****************************************Getting Info form local Storage******************************************************************/
     
     const gettingInfoFromLS = () => {
     
@@ -25,7 +24,7 @@ const passingColorToLS = () => {
         let bearClikedNameInfoColors = bearData['colors']
         let bearClikedNameInfoPrice = bearData['price']
         
-        const titleBearName = document.querySelector('.productName') // Displaying the clicked Bear criterias (Name, Photo, Description,Price)
+        const titleBearName = document.querySelector('.productName') // Displaying clicked Bear criterias (Name, Photo, Description,Price)
         titleBearName.innerHTML = bearClikedNameInfoName
     
         const bearPhoto = document.querySelector('.product-pic').src = bearClikedNameInfoImageUrl
@@ -36,7 +35,6 @@ const passingColorToLS = () => {
         const bearPrice = document.querySelector('.product-price')
         bearPrice.innerHTML = bearClikedNameInfoPrice + " €"
 
-    
         const ElSelectMenuColor = document.createElement('select') // end of Displaying the clicked Bear
         ElSelectMenuColor.setAttribute('id','menuColor')
     
@@ -59,7 +57,7 @@ const passingColorToLS = () => {
     gettingInfoFromLS()
     
     
-    /*********************************************back home button****************************************************/
+    /*********************************************back home button*****************************************************************************/
     
     const backHomePageButton = () => {
         const btn = document.querySelector('.btn_back_to_home')
@@ -68,27 +66,14 @@ const passingColorToLS = () => {
     
     backHomePageButton()
     
-    /*********************************************Add product to kart************************************************/
-     // <-- variable global
-    //console.log(selectedIteamsIdArray)
-    
-    //console.log('selectedIteamsIdArray' + selectedIteamsIdArray )
-    
-    // if (localStorage.getItem('selectedIteamsIdArray') != null) {
-    
-    // selectedIteamsIdArray = JSON.parse(localStorage.getItem('selectedIteamsIdArray'))
-    // console.log('recupId')
-    // }
-    
-    //selectedIteamsIdArray.push()
-    //localStorage.setItem('selectedIteamsIdArray',selectedIteamsId) 
-    
-    
+    /*********************************************Add product to kart*************************************************************************/
+
+       
     const passingProductSpecificationsToLS = () => {
     
         let kartButton = document.getElementById('kart-button')
         
-        kartButton.addEventListener('click', function(){
+        kartButton.addEventListener('click', function(){   // On click of cart button get item Name, selected color, price to send to LocalStorage
         
             let selectedItemName = document.querySelector('.productName').textContent
             localStorage.setItem('selectedItemName',selectedItemName)
@@ -98,18 +83,13 @@ const passingColorToLS = () => {
     
             let selectedItemPrice = document.querySelector('.product-price').textContent
             localStorage.setItem('itemPrice',selectedItemPrice)
-    
-            //console.log(selectedItemId)
-    
-            //selectedIteamsIdArray.push(selectedItemId)
-            //console.log(selectedIteamsIdArray)
-    
+
             }
           )
          } 
          passingProductSpecificationsToLS()
     
-    /*********************************************Go to Cart Page****************************************************/
+    /*********************************************Go to Cart Page******************************************************************************/
     
     const goToCartPageButton = () => {
         const btn = document.querySelector('#kart-btn')
@@ -118,17 +98,17 @@ const passingColorToLS = () => {
     
     goToCartPageButton()
     
-    /*************************************Importing the Item Constructor from cartItemConstructor.js*******************/
+    /*************************************Importing the Item Constructor from cartItemConstructor.js********************************************/
     
     import {kartItem} from './cartItemConstructor.js'
    
-    /***********************************************************Send cart Session & Id to Local Storage***************/
+    /***********************************************************Send cart Session & Id to Local Storage****************************************/
     
      const addToCartSessionToLS = () => {
       
         let kartBtn = document.getElementById('kart-button')
         
-        kartBtn.addEventListener('click', function(){
+        kartBtn.addEventListener('click', function(){ // on click of cart button get Name, selected color, price and Id of item to local storage 'cartSession'
     
           let selectedItemName = document.querySelector('.productName').textContent
           let colorPicked = document.getElementById('menuColor').value 
