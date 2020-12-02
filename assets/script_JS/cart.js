@@ -15,52 +15,26 @@ const backToProductPageButton = () => {
 
 backToProductPageButton()
 
-/*************************************************************************************************/
-// let displayData = () => {
-//   let bearName = localStorage.getItem("selectedItemName");
-//   let h2ItemName = document.createElement("h2");
-//   h2ItemName.innerHTML = bearName;
-//   document.querySelector("section").appendChild(h2ItemName);
-
-//   let bearColor = localStorage.getItem("selectedColor");
-//   let h3ItemColor = document.createElement("h3");
-//   h3ItemColor.innerHTML = bearColor;
-//   document.querySelector("section").appendChild(h3ItemColor);
-
-//   let bearPrice = localStorage.getItem("itemPrice");
-//   let h4ItemPrice = document.createElement("h4");
-//   h4ItemPrice.innerHTML = bearPrice;
-//   document.querySelector("section").appendChild(h4ItemPrice);
-// };
-
 /***************************************Creating HTML Structur to display items*******************************/
 
-//console.log(localStorage.getItem("cartSession"));
-
 let cart = JSON.parse(localStorage.getItem("cartSession"));
-//console.log(cart);
 
-let numberOfItem; // = Object.keys(cart).length
-let numberOfObjectInItem; /* compte le nombre d'objets dans le tableau */
+let numberOfItem;            // = Object.keys(cart).length
+let numberOfObjectInItem;     
 
 if (cart == null || cart == "") {
   document.querySelector(".totalPrice").innerHTML =
     "No Item in the cart yet ! ";
-    let divForm = document.querySelector('.form-style-7')  // Passe le form en invisible si 0 item dans le cart.
-    //let divItem_info = document.querySelector('.item_info')
-    //console.log(divForm)
-    //divsItem_info.setAttribute('class','invisible')
+    let divForm = document.querySelector('.form-style-7')  // set from Div as Invisible if no item in the cart
     divForm.setAttribute('class','invisible')
 } 
 
 else {
-  numberOfItem = Object.keys(cart).length;
-  numberOfObjectInItem = Object.keys(cart[0]).length;
+  numberOfItem = Object.keys(cart).length;                // count the number of item in the cart
+  numberOfObjectInItem = Object.keys(cart[0]).length;     // count the number of value in the array
 }
 
 const arrayCriteria = ["name", "color", "price"];
-//const arrayCriteria = ["Name", "Color", "Price"];
-//console.log(arrayCriteria[0])
 
 const divToDisplayEachItem = () => {
   for (let i = 0; i < numberOfItem; i++) {
@@ -75,69 +49,53 @@ const divToDisplayEachItem = () => {
     document.querySelector(".All-items").appendChild(cancelButton);
 
     cancelButton.addEventListener("click", () => {
-      //console.log(i);
-
-      cart.splice(i, 1);
+  
+    cart.splice(i, 1);
       //console.log(cart);
 
-      localStorage.setItem("cartSession", JSON.stringify(cart));
-      cart = localStorage.getItem("cartSession");
+    localStorage.setItem("cartSession", JSON.stringify(cart));
+    cart = localStorage.getItem("cartSession");
 
-      allItemsDiv.removeChild;
-      location.reload();
+    allItemsDiv.removeChild;
+    location.reload();
 
     });
 
     for (let j = 0; j < numberOfObjectInItem; j++) {
 
-      let elH2 = document.createElement("h2");   // Set name of item properties in a H2 element
+      let elH2 = document.createElement("h2");   
       elH2.setAttribute("class", "attribut-number-title" + j);
       elH2.innerHTML = arrayCriteria[j] + ": ";   // arrayCriteria[j].charAt(0).toUpperCase() + arrayCriteria[j].slice(1) + ": "
-      itemDiv.appendChild(elH2);
+      itemDiv.appendChild(elH2);                  // Set title of item properties in a H2 element
       
-      let elP = document.createElement("p");     // Set the selected item properties under the H2 element
+      let elP = document.createElement("p");     
       elP.setAttribute("class", "attribut-number" + j);
-      itemDiv.appendChild(elP);
+      itemDiv.appendChild(elP);                   
       let criteria = arrayCriteria[j];
-      elP.innerHTML = cart[i][criteria];
+      elP.innerHTML = cart[i][criteria];          // Set the selected item properties in a <p> under the H2 element
 
     }
   }
 };
 
-
 divToDisplayEachItem();
 
-/**************************************************Get Prices to calculate total********************************/
+/**************************************************Get Prices to calculate total***************************************************************/
 let pricesArray = [];
 
 const getPrices = () => {
-  for (i = 0; i < numberOfItem; i++) {
-    let pPrice = document.getElementsByClassName("attribut-number2");
-    let textPrice = pPrice[i].textContent;
-    //console.log('textPrice =' + textPrice)
+  for (let i = 0; i < numberOfItem; i++) {
+    let pPrice = document.getElementsByClassName("attribut-number2");   
+    let textPrice = pPrice[i].textContent;                             // get price string from HTLM page
 
-    let price = Number(textPrice.replace(/[^\d]/g, ""));
-    // console.log('price= ' + price)
+    let price = Number(textPrice.replace(/[^\d]/g, ""));               // remove € sign and convert string to number
 
-    pricesArray.push(price);
-    // console.log(pricesArray)
+    pricesArray.push(price);                                           // push all prices of items in cart to variable pricesArray as an array 
   }
 };
 getPrices();
 
-//let totalPriceItems
-
-// const additioner = (accumulator, currentValue) => {
-//   // if (currentValue =="") {return}
-//   // else{
-// accumulator + currentValue;
-// let totalPriceItems = pricesArray.reduce(additioner);
-
-// }
-
-
-
+/**************************************************Calculate and display total price of all items in the cart*********************************/
 
 const displayTotal = () => {
 
@@ -158,15 +116,8 @@ const displayTotal = () => {
   if (totalPriceItems >= 0 ) {
     divTotalPrice.appendChild(elPForTotal);
     localStorage.setItem('Total_price_Order',totalPriceItems)
-    console.log("pass if in displayTotal") // Test
   } 
   
-  // else {
-
-  //   elPForTotal.innerHTML = "No item in the cart !! GO AND BUY ONE !!";
-  //   divTotalPrice.appendChild(elPForTotal);
-
-  // }
 };
 
 displayTotal();
@@ -192,11 +143,12 @@ let JSONfinalOrderForDB
 
 submitBtn.addEventListener("click", (e) => {
   
+    e.preventDefault()
     divError.innerText = ""
-    messages = [];
+    let messages = [];
 
   if (nameInput.value ==="" || nameInput.value <=0 || nameInput.value >=0 || nameInput.value == null) {
-      //console.log('pass in nameInput ')
+      console.log('pass in nameInput ')
       messages.push("A valide name is required");
   }
 

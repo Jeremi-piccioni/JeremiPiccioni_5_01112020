@@ -1,25 +1,25 @@
-/********************************Get Bear Object from server******************************************************/
+/********************************Get Bears data from server******************************************************/
 
-const oursNamesRequest = new XMLHttpRequest()
+const bearsData = new XMLHttpRequest()
 
-oursNamesRequest.onreadystatechange = function () {
+bearsData.onreadystatechange = function () {
 if(this.readyState == 4 && this.status == 200) {
 
-    let bearDescriptionList = JSON.parse(this.responseText)
+    let bearsParsedData = JSON.parse(this.responseText)
 
-    displayBearsNames(bearDescriptionList)
+    displayBearsNames(bearsParsedData)
     
    }
 }
 
-oursNamesRequest.open("GET","http://localhost:3000/api/teddies", true)
-oursNamesRequest.send()
+bearsData.open("GET","http://localhost:3000/api/teddies", true)
+bearsData.send()
 
 /*********************************Display Bears Name on Index Page*********************************************/
 
-const displayBearsNames = (bearDescriptionList) => {
+const displayBearsNames = (bearsParsedData) => {
 
-for (let bearsObject of bearDescriptionList ) {
+for (let bearsObject of bearsParsedData ) {
 
     const bearLink = document.createElement('a')
     bearLink.setAttribute('href','product.html')

@@ -12,7 +12,61 @@ const passingColorToLS = () => {
        }
       )
      } 
+    
+    /*******************************************Adding Color List****************************************************/
+    
+    //Test: const colorTest = ['red','blue','pink']
+    
+    // const displayColorPicker = (bearClikedNameInfoColors) => {
+        
+    //     const ElSelectMenuColor = document.createElement('select')
+    //     ElSelectMenuColor.setAttribute('id','menuColor')
+    
+    // for (let bearColor of bearClikedNameInfoColors) {
+    
+    //     let EloptionColor = document.createElement('option')
+    //     EloptionColor.setAttribute('value','color-chosen')
+    //     //EloptionColor.addClass('color-chosen')
+    //     EloptionColor.innerHTML = bearColor
+    
+    //     //console.log(bearColor)
+    
+    //     ElSelectMenuColor.appendChild(EloptionColor)
        
+    //   }
+    
+    //     document.querySelector('.colors').appendChild(ElSelectMenuColor)
+    // }
+    
+    
+    /********************************Displaying the clicked Bear***************************************************/
+    
+    const displayInfo = (bearClikedNameInfoName,bearClikedNameInfoImageUrl,  // All arguments comes from gettingInfoFromLS() L71.
+                         bearClikedNameInfoDescription,/*bearClikedNameInfoColors, */
+                         bearClikedNameInfoPrice) => {
+    
+        const titleBearName = document.querySelector('.productName')
+        titleBearName.innerHTML = /*"Item : " + */ bearClikedNameInfoName
+    
+        const bearPhoto = document.querySelector('.product-pic').src = bearClikedNameInfoImageUrl
+      //  bearPhoto.setAttribute('scr', bearClikedNameInfoImageUrl)
+    
+        const bearDescription = document.querySelector('.product-description')
+        bearDescription.innerHTML = /*"Product description : " + */ bearClikedNameInfoDescription
+    
+       // const bearColors = document.querySelector('.product-colors')  // <-- just commented (unnecessary ??)
+       // displayColorPicker(bearColors)
+       //bearColors.innerHTML =  "Color available : " 
+    
+        //console.log(bearClikedNameInfoColors)
+    
+        const bearPrice = document.querySelector('.product-price')
+        bearPrice.innerHTML = /*"Price : " + */ bearClikedNameInfoPrice + " €"
+    
+        //displayColorPicker(bearClikedNameInfoColors)  
+    }
+    // displayInfo()
+    
     /*****************************************Getting Info form local Storage****************************************/
     
     const gettingInfoFromLS = () => {
@@ -24,8 +78,14 @@ const passingColorToLS = () => {
         let bearClikedNameInfoDescription = bearData['description']
         let bearClikedNameInfoColors = bearData['colors']
         let bearClikedNameInfoPrice = bearData['price']
+
+        console.log(bearClikedNameInfoPrice)
         
-        const titleBearName = document.querySelector('.productName') // Displaying the clicked Bear criterias (Name, Photo, Description,Price)
+        // displayInfo(bearClikedNameInfoName,bearClikedNameInfoImageUrl,
+        //     bearClikedNameInfoDescription,bearClikedNameInfoColors,
+        //     bearClikedNameInfoPrice)
+
+        const titleBearName = document.querySelector('.productName')
         titleBearName.innerHTML = bearClikedNameInfoName
     
         const bearPhoto = document.querySelector('.product-pic').src = bearClikedNameInfoImageUrl
@@ -37,11 +97,11 @@ const passingColorToLS = () => {
         bearPrice.innerHTML = bearClikedNameInfoPrice + " €"
 
     
-        const ElSelectMenuColor = document.createElement('select') // end of Displaying the clicked Bear
-        ElSelectMenuColor.setAttribute('id','menuColor')
+       const ElSelectMenuColor = document.createElement('select')
+       ElSelectMenuColor.setAttribute('id','menuColor')
     
         
-            for (let bearColor of bearClikedNameInfoColors) {  // Creation of the drop down menu to display bear colors
+            for (let bearColor of bearClikedNameInfoColors) {
     
                 let EloptionColor = document.createElement('option')
                 EloptionColor.setAttribute('value',bearColor)
@@ -52,7 +112,7 @@ const passingColorToLS = () => {
                
               }
             
-            document.querySelector('.product-colors').appendChild(ElSelectMenuColor)  // 
+            document.querySelector('.product-colors').appendChild(ElSelectMenuColor)
             passingColorToLS()
              }
     
@@ -109,6 +169,23 @@ const passingColorToLS = () => {
          } 
          passingProductSpecificationsToLS()
     
+    /**********************************************Adding ALL Ids to LocalStorage**************************************/
+    
+    // if (localStorage.getItem('selectedIteamsIdArray') != null) {
+       
+    //     console.log('there is Ids in local storage already: PASS IN IF!')
+    //     console.log(localStorage.getItem('selectedIteamsIdArray'))
+    //     console.log(selectedIteamsIdArray)
+    //     selectedIteamsIdArray = JSON.parse(localStorage.getItem('selectedIteamsIdArray'))
+    // }
+    
+        
+     //console.log(selectedIteamsIdArray)
+     //selectedIteamsIdArray = localStorage.getItem('selectedIteamsIdArray')
+    
+    
+    
+    
     /*********************************************Go to Cart Page****************************************************/
     
     const goToCartPageButton = () => {
@@ -118,10 +195,17 @@ const passingColorToLS = () => {
     
     goToCartPageButton()
     
-    /*************************************Importing the Item Constructor from cartItemConstructor.js*******************/
+    /*********************************************************Item Constructor***************************************/
     
-    import {kartItem} from './cartItemConstructor.js'
-   
+    class kartItem {
+        constructor(name,color,price,quantity)  {
+            this.name = name
+            this.color = color
+            this.price = price
+            this.quantity = quantity
+        }
+    }
+    
     /***********************************************************Send cart Session & Id to Local Storage***************/
     
      const addToCartSessionToLS = () => {
@@ -129,6 +213,8 @@ const passingColorToLS = () => {
         let kartBtn = document.getElementById('kart-button')
         
         kartBtn.addEventListener('click', function(){
+          //  numberOfClick= parseInt(localStorage.getItem('ClickNumber',numberOfClick)) 
+          //  console.log(localStorage.getItem('cartSession'))
     
           let selectedItemName = document.querySelector('.productName').textContent
           let colorPicked = document.getElementById('menuColor').value 
@@ -139,6 +225,7 @@ const passingColorToLS = () => {
           let selectedIteamsIdArray= []
     
           let cartSession = []
+          //console.log('finalProductCartSession' + cartSession )
     
             if (localStorage.getItem('cartSession') != null) {
     
@@ -157,6 +244,20 @@ const passingColorToLS = () => {
      }
     
      addToCartSessionToLS()
+    
+     /**********************************Passing number of click from Product Page to Home Page************************/
+    
+    //  const passingNumberOfClickToHomePage = () => {
+    
+    //     let bckToMainPageBtn = document.querySelector('button')
+    //     bckToMainPageBtn.addEventListener('click',function(){
+    
+    //         localStorage.getItem('ClickNumer')
+    
+    //     })
+    
+    //  }
+    
     
     
     
