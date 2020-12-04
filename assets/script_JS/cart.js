@@ -1,9 +1,15 @@
-/******************************************************************************Back to home page*******************/
-const backHomePageButton = () => {
-  const btn = document.querySelector('.btn_back_to_home')
-  btn.addEventListener('click', () => {location.href = "index.html"})
-}
+// import { youGonnaWork } from "./product.js"
+// youGonnaWork()
 
+/******************************************************************************Back to home page*******************/
+// const backHomePageButton = () => {
+//   const btn = document.querySelector('.btn_back_to_home')
+//   btn.addEventListener('click', () => {location.href = "index.html"})
+// }
+
+// backHomePageButton()
+
+import { backHomePageButton } from "./sharedFunctions.js"
 backHomePageButton()
 
 /*****************************************************************************Back to product page****************/
@@ -139,7 +145,7 @@ submitBtn.addEventListener("click", (e) => {
     divError.innerText = ""
     let messages = [];
 
-  if (nameInput.value ==="" || nameInput.value <=0 || nameInput.value >=0 || nameInput.value == null) {
+  if (nameInput.value ==="" || nameInput.value <=0 || nameInput.value >=0 || nameInput.value == null ) {
       //console.log('pass in nameInput ')
       messages.push("A valide name is required"); // name field of the form must be not empty and be only letters
   }

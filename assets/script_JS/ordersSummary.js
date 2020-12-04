@@ -23,4 +23,5 @@ btnHomePage.addEventListener('click', () => {
 })
 
 
-
+import { backHomePageButton } from "./sharedFunctions.js"  // problem il manque la fonction clear Local Storage. Comment l'ajouter la backHomePageButton ?
+backHomePageButton()

@@ -59,13 +59,16 @@ const passingColorToLS = () => {
     
     /*********************************************back home button*****************************************************************************/
     
-    const backHomePageButton = () => {
-        const btn = document.querySelector('.btn_back_to_home')
-        btn.addEventListener('click', () => {location.href = "index.html"})
-    }
+    // const backHomePageButton = () => {
+    //     let btn = document.querySelector('.btn_back_to_home')
+    //     btn.addEventListener('click', () => {location.href = "index.html"})
+    // }
     
+    // backHomePageButton()
+
+    import { backHomePageButton } from "./sharedFunctions.js"
     backHomePageButton()
-    
+
     /*********************************************Add product to kart*************************************************************************/
 
        
