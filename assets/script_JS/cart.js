@@ -58,7 +58,7 @@ const divToDisplayEachItem = () => {
 
     cancelButton.addEventListener("click", () => {      
   
-    cart.splice(i, 1);                                                         // On click for cancel button remove the item from cart array 
+    cart.splice(i, 1);                                                         // On click of cancel button remove the item from cart array 
 
     localStorage.setItem("cartSession", JSON.stringify(cart));
     cart = localStorage.getItem("cartSession");
@@ -233,22 +233,80 @@ if (phoneInput.value ===""  ||
    }
 }
 
-sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
+// sendOrderToDb.open("POST","http://localhost:3000/api/teddies/order", true)
 
-sendOrderToDb.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-sendOrderToDb.send(JSONfinalOrderForDB)
+// sendOrderToDb.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+// sendOrderToDb.send(JSONfinalOrderForDB)
 
-sendOrderToDb.onreadystatechange = function() {  //Call a function when the state changes.
-      if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201) {
+// sendOrderToDb.onreadystatechange = function() {  //Call a function when the state changes.
+//       if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201) {
           
-          localStorage.setItem('Valide_Order',(sendOrderToDb.responseText))
-          location.href = "ordersSummary.html"
-    
-      }
-  }
+//           localStorage.setItem('Valide_Order',(sendOrderToDb.responseText))
+//           location.href = "ordersSummary.html"
+//       }
+//   }
+
+//const requestOptions = {} 
+
+fetch('http://localhost:3000/api/teddies/order', 
+  { 
+  method: 'post',
+  headers: {'Content-Type': "application/json;charset=UTF-8"},
+  body: JSONfinalOrderForDB
+  }).then(function (response) {
+    return response.text();
+  }).then(function(text) {
+    console.log(text);
+    localStorage.setItem('Valide_Order',(text))
+    location.href = "ordersSummary.html"
+  }).catch(function(error) {
+    console.error(error);
+  })
+
+
+
+//.then(function(response){
+
+//console.log(response.responseText)  
+//})  //.then(function (text) {console.log(text)}).catch(function(error){alert("Internal Problem:" + error)})
+
+
+//localStorage.setItem('Valide_Order',(serverResponse.responseText))
+
 
 });
 
+
+/*****************************************************Promess for XML Post Request***********************************************/
+// const promiseSendOrder = new Promise(function(resolve,reject){                      //creation of the promise
+//   if(sendOrderToDb.readyState == 4 && sendOrderToDb.status == 201){
+
+//     resolve(  localStorage.setItem('Valide_Order',(sendOrderToDb.responseText)) )
+
+//   } else {reject("internal error :")}
+
+//  })
+
+//  promiseSendOrder.then(function())
+
+
+
+
+
+// const requestOptions = {
+
+//   method: 'POST',
+//   headers: {'Content-Type': "application/json;charset=UTF-8"},
+//   body: JSONfinalOrderForDB
+
+// } 
+
+// fetch("http://localhost:3000/api/teddies/order",requestOptions)
+
+
+
+
+/***************************************************************************************************************************** */
 
 function adjust_textarea(h) {   //auto expand textarea of form
   h.style.height = "20px";

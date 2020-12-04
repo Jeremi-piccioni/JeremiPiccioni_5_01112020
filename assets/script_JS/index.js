@@ -17,7 +17,7 @@ const displayBearsNames = (bearsParsedData) => {
       localStorage.setItem("bearclickedID", singleBearObject["_id"]);
         });
       }
-   }).catch(error => alert("Server can not be reach for the moment: "+ error) )
+   }).catch(error => alert("Internal error: "+ error) )
   );
 };
 

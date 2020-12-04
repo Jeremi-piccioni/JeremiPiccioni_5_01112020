@@ -18,7 +18,7 @@ let btnHomePage = document.querySelector('.btn_back_to_home') // Send to home pa
 btnHomePage.addEventListener('click', () => {
 
     localStorage.clear()                // clear localStorage before new order and back to home page
-    location.href = "index.html"
+//  location.href = "index.html"
 
 })
 
