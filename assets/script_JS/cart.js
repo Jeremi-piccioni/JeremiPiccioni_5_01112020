@@ -219,6 +219,7 @@ if (phoneInput.value ===""  ||
   let productsArray = JSON.parse(localStorage.getItem('selectedIteamsIdArray'))
 
   let finalOrderForDB = new finalOrder (customerDataObject,productsArray ) // built object to use in Post XMLHTTPrequest
+  console.log(finalOrderForDB)
   JSONfinalOrderForDB = JSON.stringify(finalOrderForDB)  // format the object in JSON
  
 

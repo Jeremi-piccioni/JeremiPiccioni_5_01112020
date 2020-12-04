@@ -11,13 +11,27 @@ const passingColorToLS = () => {
        }
       )
      } 
-       
+
+    /**********************************************writing the correct call URL thanks to selected bear ID from the local storage******************************************************/ 
+    let clickedBearID = localStorage.getItem("bearclickedID")
+    console.log(clickedBearID)
+    let selectedBearURL = `http://localhost:3000/api/teddies/${clickedBearID}`
+    console.log(selectedBearURL)
+
+
+    //  fetch(selectedBearURL).then((response) =>   // Get bears data from the server with fetch method
+    //  response.json().then(function (bearData)  {console.log(bearData)}))
+
+
     /*****************************************Getting Info form local Storage******************************************************************/
     
     const gettingInfoFromLS = () => {
     
-        let bearData = JSON.parse(window.localStorage.getItem('bearclicked'))
-    
+       // let bearData = JSON.parse(window.localStorage.getItem('bearclicked'))
+
+       fetch(selectedBearURL).then((response) =>   // Get bears data from the server with fetch method
+       response.json().then(function (bearData)  { 
+
         let bearClikedNameInfoName = bearData['name']
         let bearClikedNameInfoImageUrl = bearData['imageUrl']
         let bearClikedNameInfoDescription = bearData['description']
@@ -52,6 +66,44 @@ const passingColorToLS = () => {
             
             document.querySelector('.product-colors').appendChild(ElSelectMenuColor)  // 
             passingColorToLS()
+
+       }))
+
+    
+        // let bearClikedNameInfoName = bearData['name']
+        // let bearClikedNameInfoImageUrl = bearData['imageUrl']
+        // let bearClikedNameInfoDescription = bearData['description']
+        // let bearClikedNameInfoColors = bearData['colors']
+        // let bearClikedNameInfoPrice = bearData['price']
+        
+        // const titleBearName = document.querySelector('.productName') // Displaying clicked Bear criterias (Name, Photo, Description,Price)
+        // titleBearName.innerHTML = bearClikedNameInfoName
+    
+        // const bearPhoto = document.querySelector('.product-pic').src = bearClikedNameInfoImageUrl
+    
+        // const bearDescription = document.querySelector('.product-description')
+        // bearDescription.innerHTML = bearClikedNameInfoDescription
+     
+        // const bearPrice = document.querySelector('.product-price')
+        // bearPrice.innerHTML = bearClikedNameInfoPrice + " €"
+
+        // const ElSelectMenuColor = document.createElement('select') // end of Displaying the clicked Bear
+        // ElSelectMenuColor.setAttribute('id','menuColor')
+    
+        
+        //     for (let bearColor of bearClikedNameInfoColors) {  // Creation of the drop down menu to display bear colors
+    
+        //         let EloptionColor = document.createElement('option')
+        //         EloptionColor.setAttribute('value',bearColor)
+        //         EloptionColor.setAttribute('id','color-chosen')
+        //         EloptionColor.innerHTML = bearColor
+            
+        //         ElSelectMenuColor.appendChild(EloptionColor)
+               
+        //       }
+            
+        //     document.querySelector('.product-colors').appendChild(ElSelectMenuColor)  // 
+        //     passingColorToLS()
              }
     
     gettingInfoFromLS()
@@ -117,8 +169,8 @@ const passingColorToLS = () => {
           let colorPicked = document.getElementById('menuColor').value 
           let selectedItemPrice = document.querySelector('.product-price').textContent
     
-          let selectedItem = JSON.parse(localStorage.getItem('bearclicked'))
-          let selectedItemId = selectedItem['_id']
+          //let selectedItem = 
+          let selectedItemId = localStorage.getItem('bearclickedID')
           let selectedIteamsIdArray= []
     
           let cartSession = []
