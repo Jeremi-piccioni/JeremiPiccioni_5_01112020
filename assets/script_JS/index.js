@@ -22,13 +22,3 @@ const displayBearsNames = (bearsParsedData) => {
 };
 
 displayBearsNames()
-
-/********************************Passing object to local storage**********************************************/
-
-// const bearsDescriptionToLS = (singleBearObject, bearLink) => {
-//   bearLink.addEventListener("click", () => {
-//     console.log(JSON.stringify(singleBearObject));
-
-//     localStorage.setItem("bearclicked", JSON.stringify(singleBearObject));
-//   });
-// };
