@@ -2,6 +2,10 @@
 
 import { backHomePageButton } from "./sharedFunctions.js";
 backHomePageButton();
+/************************************************************************import All Class*****************************/
+
+import { customerData } from "./sharedFunctions.js"  
+import { finalOrder } from "./sharedFunctions.js"
 
 /*****************************************************************************Back to product page****************/
 
@@ -199,17 +203,6 @@ submitBtn.addEventListener("click", (e) => {
     return;
   }
 
-  class customerData {   //class to build an object from form valide customer information
-  
-    constructor(firstName, lastName, address, city, email) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.address = address;
-      this.city = city;
-      this.email = email;
-    }
-  }
-
   let customerDataObject = new customerData(
     forenameInput.value,
     nameInput.value,
@@ -218,29 +211,13 @@ submitBtn.addEventListener("click", (e) => {
     emailInput.value
   );
 
-  class finalOrder {  // class to build object containing one object with customer data + an array of selected items in the cart
-   
-    constructor(contact, products) {
-      this.contact = contact;
-      this.products = products;
-    }
-  }
-
   let productsArray = JSON.parse(localStorage.getItem("selectedIteamsIdArray"));
 
-  let finalOrderForDB = new finalOrder(customerDataObject, productsArray); // built object to use in Post XMLHTTPrequest
+  let finalOrderForDB = new finalOrder(customerDataObject, productsArray); // built object to use in fetch Post request
   console.log(finalOrderForDB);
   JSONfinalOrderForDB = JSON.stringify(finalOrderForDB); // format the object in JSON
 
-  const sendOrderToDb = new XMLHttpRequest();
-
-  sendOrderToDb.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      let CommandID = JSON.parse(this.responseText);
-    }
-  };
-
-  fetch("http://localhost:3000/api/teddies/order", {    // Post customer data with fetch method
+  fetch("http://localhost:3000/api/teddies/order", {   // Post customer data with fetch method
     method: "post",
     headers: { "Content-Type": "application/json;charset=UTF-8" },
     body: JSONfinalOrderForDB,
@@ -260,8 +237,8 @@ submitBtn.addEventListener("click", (e) => {
 
 /*******************************************************Form display function***********************************************************/
 
-function adjust_textarea(h) {
-  //auto expand textarea of form
+function adjust_textarea(h) {                       //auto expand textarea of form
+
   h.style.height = "20px";
   h.style.height = h.scrollHeight + "px";
 }
