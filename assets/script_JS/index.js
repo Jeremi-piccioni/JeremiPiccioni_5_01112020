@@ -1,49 +1,32 @@
-/********************************Get Bears data from server******************************************************/
-
-const bearsData = new XMLHttpRequest()
-
-bearsData.onreadystatechange = function () {
-if(this.readyState == 4 && this.status == 200) {
-
-    let bearsParsedData = JSON.parse(this.responseText)
-
-    displayBearsNames(bearsParsedData)
-    
-   }
-}
-
-bearsData.open("GET","http://localhost:3000/api/teddies", true)
-bearsData.send()
-
 /*********************************Display Bears Name on Index Page*********************************************/
 
 const displayBearsNames = (bearsParsedData) => {
 
-for (let bearsObject of bearsParsedData ) {
+  fetch("http://localhost:3000/api/teddies").then((response) =>   // Get bears data from the server with fetch method
+  response.json().then(function (bearObjects)  {
 
-    const bearLink = document.createElement('a')
-    bearLink.setAttribute('href','product.html')
-    bearLink.setAttribute('id',bearsObject['name'])
-    bearLink.innerHTML = bearsObject['name']
-    const linkDiv = document.querySelector('.link')
-    linkDiv.appendChild(bearLink)
+    for (let singleBearObject of bearObjects) {
+      const bearLink = document.createElement("a");
+      bearLink.setAttribute("href", "product.html");
+      bearLink.setAttribute("id", singleBearObject["name"]);
+      bearLink.innerHTML = singleBearObject["name"];
+      const linkDiv = document.querySelector(".link");
+      linkDiv.appendChild(bearLink);
+  
+      bearsDescriptionToLS(singleBearObject, bearLink);
+      }
+   }).catch(error => alert("Server can not be reach for the moment: "+ error) )
+  );
+};
 
-    bearsDescriptionToLS(bearsObject,bearLink)
-
-  }
-}
+displayBearsNames()
 
 /********************************Passing object to local storage**********************************************/
 
-const bearsDescriptionToLS = (bearsObject,bearLink) => {
+const bearsDescriptionToLS = (singleBearObject, bearLink) => {
+  bearLink.addEventListener("click", () => {
+    console.log(JSON.stringify(singleBearObject));
 
-    bearLink.addEventListener('click',()=>{
-
-        console.log(JSON.stringify(bearsObject))
-
-        localStorage.setItem('bearclicked', JSON.stringify(bearsObject) )
-      }
-    )
-  }
-
-
+    localStorage.setItem("bearclicked", JSON.stringify(singleBearObject));
+  });
+};
