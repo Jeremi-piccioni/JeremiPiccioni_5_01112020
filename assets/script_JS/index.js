@@ -9,11 +9,13 @@ const displayBearsNames = (bearsParsedData) => {
       const bearLink = document.createElement("a");
       bearLink.setAttribute("href", "product.html");
       bearLink.setAttribute("id", singleBearObject["name"]);
-      bearLink.innerHTML = singleBearObject["name"];
+      bearName = bearLink.innerHTML = singleBearObject["name"];
       const linkDiv = document.querySelector(".link");
       linkDiv.appendChild(bearLink);
-  
-      bearsDescriptionToLS(singleBearObject, bearLink);
+
+      bearLink.addEventListener("click", () => {                  // Setting bear clicked ID on local storage
+      localStorage.setItem("bearclickedID", singleBearObject["_id"]);
+        });
       }
    }).catch(error => alert("Server can not be reach for the moment: "+ error) )
   );
@@ -23,10 +25,10 @@ displayBearsNames()
 
 /********************************Passing object to local storage**********************************************/
 
-const bearsDescriptionToLS = (singleBearObject, bearLink) => {
-  bearLink.addEventListener("click", () => {
-    console.log(JSON.stringify(singleBearObject));
+// const bearsDescriptionToLS = (singleBearObject, bearLink) => {
+//   bearLink.addEventListener("click", () => {
+//     console.log(JSON.stringify(singleBearObject));
 
-    localStorage.setItem("bearclicked", JSON.stringify(singleBearObject));
-  });
-};
+//     localStorage.setItem("bearclicked", JSON.stringify(singleBearObject));
+//   });
+// };
