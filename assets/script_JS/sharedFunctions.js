@@ -1,11 +1,11 @@
+/*************************************************************function to display the home page**************************************/
 const backHomePageButton = () => {
     const btn = document.querySelector('.btn_back_to_home')
     btn.addEventListener('click', () => {location.href = "index.html"})
   }
-  
 export {backHomePageButton}
-
-class customerData {   //class to build an object from form valide customer information
+/********************************class to build an object from form valide customer information**************************************/
+class customerData {  
   
   constructor(firstName, lastName, address, city, email) {
     this.firstName = firstName;
@@ -15,17 +15,25 @@ class customerData {   //class to build an object from form valide customer info
     this.email = email;
   }
 }
-
 export {customerData}
 
-
-
-class finalOrder {  // class to build object containing one object with customer data + an array of selected items in the cart
+/********************class to build object containing one object with customer data + an array of selected items in the cart*********/
+class finalOrder { 
    
   constructor(contact, products) {
     this.contact = contact;
     this.products = products;
   }
 }
-
 export{finalOrder}
+/***********************************class to build object containing them name, Color & Price of the item added in the cart**********/
+
+class kartItem {
+  constructor(name,color,price/*,quantity*/)  {
+      this.name = name
+      this.color = color
+      this.price = price
+    //  this.quantity = quantity
+  }
+}
+export{kartItem}

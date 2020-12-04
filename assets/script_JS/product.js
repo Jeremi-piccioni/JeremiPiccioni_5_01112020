@@ -99,7 +99,7 @@ goToCartPageButton();
 
 /*************************************Importing the Item Constructor from cartItemConstructor.js********************************************/
 
-import { kartItem } from "./cartItemConstructor.js";
+import { kartItem } from "./sharedFunctions.js";
 
 /***********************************************************Send cart Session & Id to Local Storage****************************************/
 
