@@ -15,8 +15,8 @@ let selectedBearURL = `http://localhost:3000/api/teddies/${clickedBearID}`;
 /*****************************************Getting Info form local Storage******************************************************************/
 
 const gettingInfoFromLS = () => {
-  fetch(selectedBearURL).then((
-    response // Get bears data from the server with fetch method
+  fetch(selectedBearURL).then(( // Get bears data from the server with fetch method
+    response 
   ) =>
     response.json().then(function (bearData) {
       let bearClikedNameInfoName = bearData["name"];
@@ -41,8 +41,8 @@ const gettingInfoFromLS = () => {
       const ElSelectMenuColor = document.createElement("select"); // end of Displaying the clicked Bear
       ElSelectMenuColor.setAttribute("id", "menuColor");
 
-      for (let bearColor of bearClikedNameInfoColors) {
-        // Creation of the drop down menu to display bear colors
+      for (let bearColor of bearClikedNameInfoColors) {    // Creation of the drop down menu to display bear colors
+     
 
         let EloptionColor = document.createElement("option");
         EloptionColor.setAttribute("value", bearColor);
@@ -70,9 +70,8 @@ backHomePageButton();
 const passingProductSpecificationsToLS = () => {
   let kartButton = document.getElementById("kart-button");
 
-  kartButton.addEventListener("click", function () {
-    // On click of cart button get item Name, selected color, price to send to LocalStorage
-
+  kartButton.addEventListener("click", function () { // On click of cart button get item Name, selected color, price to send to LocalStorage
+    
     let selectedItemName = document.querySelector(".productName").textContent;
     localStorage.setItem("selectedItemName", selectedItemName);
 
@@ -106,8 +105,8 @@ import { kartItem } from "./sharedFunctions.js";
 const addToCartSessionToLS = () => {
   let kartBtn = document.getElementById("kart-button");
 
-  kartBtn.addEventListener("click", function () {
-    // on click of cart button get Name, selected color, price and Id of item to local storage 'cartSession'
+  kartBtn.addEventListener("click", function () { // on click of cart button get Name, selected color, price and Id of item to local storage 'cartSession'
+    
 
     let selectedItemName = document.querySelector(".productName").textContent;
     let colorPicked = document.getElementById("menuColor").value;

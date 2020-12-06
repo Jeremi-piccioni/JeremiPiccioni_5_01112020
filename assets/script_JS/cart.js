@@ -4,8 +4,8 @@ import { backHomePageButton } from "./sharedFunctions.js";
 backHomePageButton();
 /************************************************************************import All Class*****************************/
 
-import { customerData } from "./sharedFunctions.js"  
-import { finalOrder } from "./sharedFunctions.js"
+import { customerData } from "./sharedFunctions.js";
+import { finalOrder } from "./sharedFunctions.js";
 
 /*****************************************************************************Back to product page****************/
 
@@ -62,7 +62,7 @@ const divToDisplayEachItem = () => {
     for (let j = 0; j < numberOfObjectInItem; j++) {
       let elH2 = document.createElement("h2");
       elH2.setAttribute("class", "attribut-number-title" + j);
-      elH2.innerHTML = arrayCriteria[j] + ": "; 
+      elH2.innerHTML = arrayCriteria[j] + ": ";
       itemDiv.appendChild(elH2); // Set title of item properties in a H2 element
 
       let elP = document.createElement("p");
@@ -83,9 +83,8 @@ const getPrices = () => {
   for (let i = 0; i < numberOfItem; i++) {
     let pPrice = document.getElementsByClassName("attribut-number2");
     let textPrice = pPrice[i].textContent; // get price string from HTLM page
-
     let price = Number(textPrice.replace(/[^\d]/g, "")); // remove € sign and convert string to number
-
+    
     pricesArray.push(price); // pushs all prices of items in cart to variable pricesArray as an array
   }
 };
@@ -94,16 +93,16 @@ getPrices();
 /**************************************************Calculate and display total price of all items in the cart*********************************/
 
 const displayTotal = () => {
-  if (cart == null || cart == "") { // if cart is emplty return
-
+  if (cart == null || cart == "") {
+    // if cart is emplty return
     return;
-  } 
+  }
 
   let totalPriceItems = pricesArray.reduce(function (
     accumulator,
     currentValue
   ) {
-    return accumulator + currentValue;  // Make additions of all prices of variable pricesArray
+    return accumulator + currentValue; // Make additions of all prices of variable pricesArray
   });
 
   const elPForTotal = document.createElement("p");
@@ -113,7 +112,6 @@ const displayTotal = () => {
   let divTotalPrice = document.querySelector(".totalPrice");
   divTotalPrice.appendChild(elPForTotal);
   localStorage.setItem("Total_price_Order", totalPriceItems);
-
 };
 
 displayTotal();
@@ -143,7 +141,6 @@ submitBtn.addEventListener("click", (e) => {
     nameInput.value >= 0 ||
     nameInput.value == null
   ) {
-
     messages.push("A valide name is required"); // name field of the form must be not empty and be only letters
   }
 
@@ -156,8 +153,9 @@ submitBtn.addEventListener("click", (e) => {
     messages.push("A valide forename is required"); // forename field of the form must be not empty and be only letters
   }
 
-  if (addressInput.value.match(/^\d+\s[A-z]+\s[A-z]+/) == null) {   // address field of the form must start with numbers then space then letters
-                                                                   // then space and letters then any caraters (EX: 23 rue jean bernard)
+  if (addressInput.value.match(/^\d+\s[A-z]+\s[A-z]+/) == null) {
+    // address field of the form must start with numbers then space then letters
+    // then space and letters then any caraters (EX: 23 rue jean bernard)
     messages.push("A valide address is required");
   }
 
@@ -196,8 +194,9 @@ submitBtn.addEventListener("click", (e) => {
     messages.push("A valide phone number is required"); // phone field of the form must be not empty  and 10 digits number
   }
 
-  if (messages.length > 0) {    // if there is an error in the above validations -> prevent to send forms data and display error message(s)
- 
+  if (messages.length > 0) {
+    // if there is an error in the above validations -> prevent to send forms data and display error message(s)
+
     e.preventDefault();
     divError.innerText = messages.join(" / ");
     return;
@@ -217,7 +216,7 @@ submitBtn.addEventListener("click", (e) => {
   console.log(finalOrderForDB);
   JSONfinalOrderForDB = JSON.stringify(finalOrderForDB); // format the object in JSON
 
-  fetch("http://localhost:3000/api/teddies/order", {   // Post customer data with fetch method
+  fetch("http://localhost:3000/api/teddies/order", { // Post customer data with fetch method
     method: "post",
     headers: { "Content-Type": "application/json;charset=UTF-8" },
     body: JSONfinalOrderForDB,
@@ -225,9 +224,9 @@ submitBtn.addEventListener("click", (e) => {
     .then(function (response) {
       return response.text();
     })
-    .then(function (text) {                           // Get response from the server
-      //console.log(text);
-      localStorage.setItem("Valide_Order", text);     // Pass response to local storage
+    .then(function (text) {       // Get response from the server
+
+      localStorage.setItem("Valide_Order", text); // Pass response to local storage
       location.href = "ordersSummary.html";
     })
     .catch(function (error) {
@@ -237,8 +236,7 @@ submitBtn.addEventListener("click", (e) => {
 
 /*******************************************************Form display function***********************************************************/
 
-function adjust_textarea(h) {                       //auto expand textarea of form
-
+function adjust_textarea(h) {  //auto expand textarea of form 
   h.style.height = "20px";
   h.style.height = h.scrollHeight + "px";
 }
