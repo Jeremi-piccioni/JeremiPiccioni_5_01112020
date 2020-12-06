@@ -2,12 +2,12 @@
 
 import { backHomePageButton } from "./sharedFunctions.js";
 backHomePageButton();
-/************************************************************************import All Class*****************************/
+/************************************************************************import All Class**************************/
 
 import { customerData } from "./sharedFunctions.js";
 import { finalOrder } from "./sharedFunctions.js";
 
-/*****************************************************************************Back to product page****************/
+/*****************************************************************************Back to product page*****************/
 
 const backToProductPageButton = () => {
   const btn = document.querySelector(".btn_back_to_product");
@@ -18,7 +18,7 @@ const backToProductPageButton = () => {
 
 backToProductPageButton();
 
-/***************************************Creating HTML Structur to display items*******************************/
+/****************************Remove customer form & display "No item in the cart" if cart is empty*****************/
 
 let cart = JSON.parse(localStorage.getItem("cartSession"));
 
@@ -28,12 +28,14 @@ let numberOfObjectInItem;
 if (cart == null || cart == "") {
   document.querySelector(".totalPrice").innerHTML =
     "No Item in the cart yet ! ";
-  let divForm = document.querySelector(".form-style-7"); // set from Div as Invisible if no item in the cart
+  let divForm = document.querySelector(".form-style-7"); // set form Div as Invisible if no item in the cart
   divForm.setAttribute("class", "invisible");
 } else {
   numberOfItem = Object.keys(cart).length; // count the number of item in the cart
   numberOfObjectInItem = Object.keys(cart[0]).length; // count the number of value in the array
 }
+
+/***************************************Creating HTML Structur to display items**********************************/
 
 const arrayCriteria = ["name", "color", "price"];
 
@@ -76,7 +78,7 @@ const divToDisplayEachItem = () => {
 
 divToDisplayEachItem();
 
-/**************************************************Get Prices to calculate total***************************************************************/
+/**************************************************Get Prices to calculate total*****************************************/
 let pricesArray = [];
 
 const getPrices = () => {
@@ -84,13 +86,13 @@ const getPrices = () => {
     let pPrice = document.getElementsByClassName("attribut-number2");
     let textPrice = pPrice[i].textContent; // get price string from HTLM page
     let price = Number(textPrice.replace(/[^\d]/g, "")); // remove € sign and convert string to number
-    
+
     pricesArray.push(price); // pushs all prices of items in cart to variable pricesArray as an array
   }
 };
 getPrices();
 
-/**************************************************Calculate and display total price of all items in the cart*********************************/
+/********************************Calculate and display total price of all items in the cart*********************************/
 
 const displayTotal = () => {
   if (cart == null || cart == "") {
