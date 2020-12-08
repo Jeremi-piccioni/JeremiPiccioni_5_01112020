@@ -1,7 +1,7 @@
 /******************************************************************************Back to home page*******************/
 
-import { backHomePageButton } from "./sharedFunctions.js";
-backHomePageButton();
+import { addTargetPage } from "./sharedFunctions.js";
+
 /************************************************************************import All Class**************************/
 
 import { customerData } from "./sharedFunctions.js";
@@ -9,14 +9,8 @@ import { finalOrder } from "./sharedFunctions.js";
 
 /*****************************************************************************Back to product page*****************/
 
-const backToProductPageButton = () => {
-  const btn = document.querySelector(".btn_back_to_product");
-  btn.addEventListener("click", () => {
-    location.href = "product.html";
-  });
-};
-
-backToProductPageButton();
+let productPageBtn = document.querySelector(".btn_back_to_product")
+addTargetPage(productPageBtn,"product.html")
 
 /****************************Remove customer form & display "No item in the cart" if cart is empty*****************/
 
@@ -100,12 +94,14 @@ const displayTotal = () => {
     return;
   }
 
-  let totalPriceItems = pricesArray.reduce(function (
-    accumulator,
-    currentValue
-  ) {
-    return accumulator + currentValue; // Make additions of all prices of variable pricesArray
-  });
+  // let totalPriceItems = pricesArray.reduce(Math.add)
+  let totalPriceItems = pricesArray.reduce( (prix1,prix2) => { return prix1 + prix2 } , 0)
+  // let totalPriceItems = pricesArray.reduce(function (
+  //   accumulator,
+  //   currentValue
+  // ) {
+  //   return accumulator + currentValue; // Make additions of all prices of variable pricesArray
+  // });
 
   const elPForTotal = document.createElement("p");
   elPForTotal.setAttribute("id", "grand-total");

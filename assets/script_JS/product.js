@@ -1,69 +1,60 @@
-/************************************************Passing Colors to LS**************************************************************************/
-const passingColorToLS = () => {
-  let colorChosen = document.getElementById("menuColor");
-  colorChosen.addEventListener("change", function () {
-    let colorPicked = document.getElementById("menuColor").value;
-    localStorage.setItem("color", colorPicked);
-  });
-};
+import { addTargetPage } from "./sharedFunctions.js";
+
+/*************************************Importing the Item Constructor from cartItemConstructor.js********************************************/
+
+import { kartItem } from "./sharedFunctions.js";
+
 
 /**********************************************writing the correct call URL thanks to selected bear ID from the local storage***************/
 
-let clickedBearID = localStorage.getItem("bearclickedID");
-let selectedBearURL = `http://localhost:3000/api/teddies/${clickedBearID}`;
+function getCurrentBearUrl() {
+  let bearclickedID = localStorage.getItem("bearclickedID");
+  return `http://localhost:3000/api/teddies/${bearclickedID}`;
+}
 
 /*****************************************Getting Info form local Storage******************************************************************/
 
-const gettingInfoFromLS = () => {
-  fetch(selectedBearURL).then(( // Get bears data from the server with fetch method
-    response 
-  ) =>
-    response.json().then(function (bearData) {
-      let bearClikedNameInfoName = bearData["name"];
-      let bearClikedNameInfoImageUrl = bearData["imageUrl"];
-      let bearClikedNameInfoDescription = bearData["description"];
-      let bearClikedNameInfoColors = bearData["colors"];
-      let bearClikedNameInfoPrice = bearData["price"];
+const showCurrentBear = () => {
+
+  // Get bears data from the server with fetch method
+  fetch(getCurrentBearUrl()).then((bearData) =>
+
+    bearData.json().then((bear) => {
 
       const titleBearName = document.querySelector(".productName"); // Displaying clicked Bear criterias (Name, Photo, Description,Price)
-      titleBearName.innerHTML = bearClikedNameInfoName;
+      titleBearName.innerHTML = bear["name"];
 
-      const bearPhoto = (document.querySelector(
-        ".product-pic"
-      ).src = bearClikedNameInfoImageUrl);
+      document.querySelector(".product-pic").src = bear["imageUrl"];
 
-      const bearDescription = document.querySelector(".product-description");
-      bearDescription.innerHTML = bearClikedNameInfoDescription;
+      document.querySelector(".product-description").innerHTML = bear["description"];
 
-      const bearPrice = document.querySelector(".product-price");
-      bearPrice.innerHTML = bearClikedNameInfoPrice + " €";
+      document.querySelector(".product-price").innerHTML = bear["price"] + " €";
 
-      const ElSelectMenuColor = document.createElement("select"); // end of Displaying the clicked Bear
-      ElSelectMenuColor.setAttribute("id", "menuColor");
+      let select = document.createElement("select")
+      select.setAttribute("id", "colors");
 
-      for (let bearColor of bearClikedNameInfoColors) {    // Creation of the drop down menu to display bear colors
-     
+      for (let color of bear["colors"]) {    // Creation of the drop down menu to display bear colors
 
-        let EloptionColor = document.createElement("option");
-        EloptionColor.setAttribute("value", bearColor);
-        EloptionColor.setAttribute("id", "color-chosen");
-        EloptionColor.innerHTML = bearColor;
-
-        ElSelectMenuColor.appendChild(EloptionColor);
+        insertColor(color, select);
       }
 
-      document.querySelector(".product-colors").appendChild(ElSelectMenuColor); //
-      passingColorToLS();
+      document.querySelector(".product-colors").appendChild(select); //
+      select.addEventListener("change", function (e) {
+        localStorage.setItem("color", select.value);
+      });
     })
   );
 };
 
-gettingInfoFromLS();
+document.addEventListener("DOMContentLoaded",()=>{
+
+  showCurrentBear();
+  let homePageBtn = document.querySelector(".btn_back_to_home"); // Send to home page on click
+  addTargetPage(homePageBtn,"index.html");
+})
 
 /*********************************************back home button*****************************************************************************/
 
-import { backHomePageButton } from "./sharedFunctions.js";
-backHomePageButton();
 
 /*********************************************Add product to kart*************************************************************************/
 
@@ -71,11 +62,11 @@ const passingProductSpecificationsToLS = () => {
   let kartButton = document.getElementById("kart-button");
 
   kartButton.addEventListener("click", function () { // On click of cart button get item Name, selected color, price to send to LocalStorage
-    
+
     let selectedItemName = document.querySelector(".productName").textContent;
     localStorage.setItem("selectedItemName", selectedItemName);
 
-    let colorPicked = document.getElementById("menuColor").value;
+    let colorPicked = document.getElementById("colors").value;
     localStorage.setItem("selectedColor", colorPicked);
 
     let selectedItemPrice = document.querySelector(".product-price")
@@ -87,29 +78,18 @@ passingProductSpecificationsToLS();
 
 /*********************************************Go to Cart Page******************************************************************************/
 
-const goToCartPageButton = () => {
-  const btn = document.querySelector("#kart-btn");
-  btn.addEventListener("click", () => {
-    location.href = "cart.html";
-  });
-};
-
-goToCartPageButton();
-
-/*************************************Importing the Item Constructor from cartItemConstructor.js********************************************/
-
-import { kartItem } from "./sharedFunctions.js";
+let addToCartBtn = document.getElementById("kart-button");
+let goToCartPageBtn = document.getElementById("kart-btn");
 
 /***********************************************************Send cart Session & Id to Local Storage****************************************/
 
 const addToCartSessionToLS = () => {
-  let kartBtn = document.getElementById("kart-button");
+  
+  addToCartBtn.addEventListener("click", function () { // on click of cart button get Name, selected color, price and Id of item to local storage 'cartSession'
 
-  kartBtn.addEventListener("click", function () { // on click of cart button get Name, selected color, price and Id of item to local storage 'cartSession'
-    
 
     let selectedItemName = document.querySelector(".productName").textContent;
-    let colorPicked = document.getElementById("menuColor").value;
+    let colorPicked = document.getElementById("colors").value;
     let selectedItemPrice = document.querySelector(".product-price")
       .textContent;
 
@@ -139,3 +119,13 @@ const addToCartSessionToLS = () => {
 };
 
 addToCartSessionToLS();
+
+function insertColor(color, select) {
+  let option = document.createElement("option");
+  option.setAttribute("value", color);
+  option.setAttribute("id", "color-chosen");
+  option.innerHTML = color;
+  select.appendChild(option);
+}
+
+addTargetPage(goToCartPageBtn,"cart.html");
